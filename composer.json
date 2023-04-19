@@ -31,7 +31,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "InvestecSdkPhp\\Tests": "tests"
+            "InvestecSdkPhp\\Tests\\": "tests"
         }
     },
     "scripts": {
