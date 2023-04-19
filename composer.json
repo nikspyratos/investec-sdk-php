@@ -1,15 +1,15 @@
 {
-    "name": "nikolaos-spyratos/investec-sdk-php",
+    "name": "nikspyratos/investec-sdk-php",
     "description": "Investec SDK for PHP",
     "keywords": [
         "Investec",
         "SDK"
     ],
-    "homepage": "https://github.com/nikolaos-spyratos/investec-sdk-php",
+    "homepage": "https://github.com/nikspyratos/investec-sdk-php",
     "license": "MIT",
     "authors": [
         {
-            "name": "Nikolaos Spyratos",
+            "name": "Nik Spyratos",
             "role": "Developer"
         }
     ],

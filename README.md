@@ -1,47 +1,86 @@
-# :package_description
+# Investec API SDK for PHP
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![Tests](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/nikspyratos/investec-sdk-php.svg?style=flat-square)](https://packagist.org/packages/nikspyratos/investec-sdk-php)
+[![Tests](https://img.shields.io/github/actions/workflow/status/nikspyratos/investec-sdk-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/nikspyratos/investec-sdk-php/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/nikspyratos/investec-sdk-php.svg?style=flat-square)](https://packagist.org/packages/nikspyratos/investec-sdk-php)
 ---
-This package can be used as to scaffold a framework agnostic package. Follow these steps to get started:
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this skeleton
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+This is a PHP SDK for [Investec's API](https://developer.investec.com/za/api-products/), using [Saloon](https://github.com/Sammyjo20/Saloon).
 
-## Support us
+All endpoints are on the roadmap for support, but for now the focus is on the Private Banking API.
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
+## Support
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Buy me a coffee: https://tip-jar.co.za/@thecapegreek
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require nikspyratos/investec-sdk-php
 ```
 
 ## Usage
 
+### Personal use
+
+Firstly, make sure you've [obtained your API credentials](https://offerzen.gitbook.io/programmable-banking-community-wiki/get-started/api-quick-start-guide#how-to-get-your-api-keys) - this is how you get your client ID, secret and API key.
+
+Note: Personal use access tokens have a lifespan of 30 minutes.
+
 ```php
-$skeleton = new VendorName\Skeleton();
-echo $skeleton->echoPhrase('Hello, VendorName!');
+use InvestecSdkPhp\Connectors\InvestecConnector;
+
+$clientId = '';
+$clientSecret = '';
+$apiKey = '';
+
+//Initialise the API Connector
+$connector = new InvestecConnector($clientId, $clientSecret, $apiKey);
+
+//Get an access token
+$authenticator = $connector->getAccessToken();
+
+//Use it to authenticate requests for Private Banking
+$api = $connector->privateBanking($authenticator);
+
+//Have fun!
+$data = $api->getAccounts();
+```
+
+### Business use
+
+```php
+use InvestecSdkPhp\Connectors\InvestecOAuthConnector;
+
+$clientId = '';
+$clientSecret = '';
+$redirectUri = '';
+
+//Initialise the API Connector
+$connector = new InvestecOAuthConnector($clientId, $clientSecret, $redirectUri);
+
+//Create an OAuth authorization URL. You redirect your user to this
+$authUrl = $connector->getAuthorizationUrl();
+```
+After being redirected back to your specified `$redirectUri`, you should have a code. Proceed as usual:
+```php
+$code = ''
+//Get an access token
+$authenticator = $connector->getAccessToken($code);
+
+//Use it to authenticate requests for Private Banking
+$api = $connector->privateBanking($authenticator);
+
+//Have fun!
+$data = $api->getAccounts();
 ```
 
 ## Testing
 
 ```bash
-composer test
+vendor/bin/pest
 ```
 
 ## Changelog
@@ -58,7 +97,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Nik Spyratos](https://github.com/nikspyratos)
 - [All Contributors](../../contributors)
 
 ## License
