@@ -17,8 +17,11 @@ class InvestecConnector extends Connector
     }
 
     private string $clientId;
+
     private string $clientSecret;
+
     private string $apiKey;
+
     private string $baseUrl;
 
     public function __construct(string $clientId, string $clientSecret, string $apiKey, Environment $environment = Environment::PRODUCTION)
@@ -53,7 +56,7 @@ class InvestecConnector extends Connector
             function (
                 GetClientCredentialsTokenRequest $request
             ) {
-                $request->withTokenAuth(base64_encode($this->clientId . ':' . $this->clientSecret), 'Basic')
+                $request->withTokenAuth(base64_encode($this->clientId.':'.$this->clientSecret), 'Basic')
                     ->headers()
                     ->add('x-api-key', $this->apiKey);
             }

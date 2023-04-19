@@ -13,7 +13,6 @@ use Saloon\Http\Response;
 
 class PrivateBankingResource extends Resource
 {
-
     public function __construct(Connector $connector, Authenticator $authenticator)
     {
         parent::__construct($connector);
