@@ -11,15 +11,14 @@ use Saloon\Traits\OAuth2\AuthorizationCodeGrant;
 
 class InvestecOAuthConnector extends Connector
 {
-    use AuthorizationCodeGrant;
-
-    private string $redirectUri;
+    use AuthorizationCodeGrant {
+        getAuthorizationUrl as grantGetAuthorizationUrl;
+    }
 
     private string $baseUrl;
 
-    public function __construct(string $clientId, string $clientSecret, string $redirectUri, Environment $environment = Environment::PRODUCTION)
+    public function __construct(string $clientId, string $clientSecret, Environment $environment = Environment::PRODUCTION)
     {
-        $this->redirectUri = $redirectUri;
         $this->baseUrl = $environment->value;
         $this->oauthConfig()->setClientId($clientId);
         $this->oauthConfig()->setClientSecret($clientSecret);
@@ -42,9 +41,14 @@ class InvestecOAuthConnector extends Connector
     {
         return OAuthConfig::make()
             ->setDefaultScopes(['accounts', 'transactions'])
-            ->setRedirectUri($this->redirectUri)
             ->setAuthorizeEndpoint('/identity/v2/oauth2/authorize')
             ->setTokenEndpoint('/identity/v2/oauth2/token');
+    }
+
+    public function getAuthorizationUrl(string $redirectUri, array $scopes = [], string $state = null, string $scopeSeparator = ' ', array $additionalQueryParameters = []): string
+    {
+        $this->oauthConfig()->setRedirectUri($redirectUri);
+        return $this->grantGetAuthorizationUrl($scopes, $state, $scopeSeparator, $additionalQueryParameters);
     }
 
     public function privateBanking(OAuthAuthenticator $authenticator): PrivateBankingResource

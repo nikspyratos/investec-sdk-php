@@ -59,14 +59,19 @@ $clientSecret = '';
 $redirectUri = '';
 
 //Initialise the API Connector
-$connector = new InvestecOAuthConnector($clientId, $clientSecret, $redirectUri);
+$connector = new InvestecOAuthConnector($clientId, $clientSecret);
 
 //Create an OAuth authorization URL. You redirect your user to this
-$authUrl = $connector->getAuthorizationUrl();
+$authUrl = $connector->getAuthorizationUrl($redirectUri);
 ```
 After being redirected back to your specified `$redirectUri`, you should have a code. Proceed as usual:
 ```php
+//Authorization code from the redirect
 $code = ''
+
+//Initialise the API Connector
+$connector = new InvestecOAuthConnector($clientId, $clientSecret);
+
 //Get an access token
 $authenticator = $connector->getAccessToken($code);
 
