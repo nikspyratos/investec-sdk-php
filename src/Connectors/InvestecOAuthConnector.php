@@ -48,6 +48,7 @@ class InvestecOAuthConnector extends Connector
     public function getAuthorizationUrl(string $redirectUri, array $scopes = [], string $state = null, string $scopeSeparator = ' ', array $additionalQueryParameters = []): string
     {
         $this->oauthConfig()->setRedirectUri($redirectUri);
+
         return $this->grantGetAuthorizationUrl($scopes, $state, $scopeSeparator, $additionalQueryParameters);
     }
 
