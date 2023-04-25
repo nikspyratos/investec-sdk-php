@@ -3,19 +3,19 @@
 namespace InvestecSdkPhp\Connectors;
 
 use InvestecSdkPhp\Environment;
+use InvestecSdkPhp\Requests\OAuth2\GetAccessTokenRequest;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
 use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Contracts\Response;
+use Saloon\Exceptions\InvalidStateException;
 use Saloon\Helpers\OAuth2\OAuthConfig;
 use Saloon\Http\Connector;
-use Saloon\Http\OAuth2\GetAccessTokenRequest;
 use Saloon\Traits\OAuth2\AuthorizationCodeGrant;
 
 class InvestecOAuthConnector extends Connector
 {
     use AuthorizationCodeGrant {
         getAuthorizationUrl as grantGetAuthorizationUrl;
-        getAccessToken as grantGetAccessToken;
     }
 
     private string $baseUrl;
@@ -61,12 +61,33 @@ class InvestecOAuthConnector extends Connector
         string $state = null,
         string $expectedState = null,
         bool $returnResponse = false,
+        ?callable $requestModifier = null
     ): OAuthAuthenticator|Response {
         $this->oauthConfig()->setRedirectUri($redirectUri);
-        $requestModifier = function (GetAccessTokenRequest $request) {
-            $request->withTokenAuth(base64_encode($this->oauthConfig()->getClientId() . ':' . $this->oauthConfig()->getClientSecret()), 'Basic');
-        };
-        return $this->grantGetAccessToken($code, $state, $expectedState, $returnResponse, $requestModifier);
+
+        $this->oauthConfig()->validate();
+
+        if (! empty($state) && ! empty($expectedState) && $state !== $expectedState) {
+            throw new InvalidStateException;
+        }
+
+        $request = new GetAccessTokenRequest($code, $this->oauthConfig());
+
+        $request = $this->oauthConfig()->invokeRequestModifier($request);
+
+        if (is_callable($requestModifier)) {
+            $requestModifier($request);
+        }
+
+        $response = $this->send($request);
+
+        if ($returnResponse === true) {
+            return $response;
+        }
+
+        $response->throw();
+
+        return $this->createOAuthAuthenticatorFromResponse($response);
     }
 
     public function privateBanking(OAuthAuthenticator $authenticator): PrivateBankingResource
