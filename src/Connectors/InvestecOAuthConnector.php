@@ -50,7 +50,7 @@ class InvestecOAuthConnector extends Connector
     protected function defaultOauthConfig(): OAuthConfig
     {
         return OAuthConfig::make()
-            ->setDefaultScopes(['accounts', 'transactions'])
+            ->setDefaultScopes(['accounts', 'balances', 'transactions'])
             ->setAuthorizeEndpoint('/identity/v2/oauth2/authorize')
             ->setTokenEndpoint('/identity/v2/oauth2/token');
     }
