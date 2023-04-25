@@ -68,13 +68,8 @@ class InvestecOAuthConnector extends Connector
      *
      * @template TRequest of Request
      *
-     * @param string $redirectUri
-     * @param string $code
-     * @param string|null $state
-     * @param string|null $expectedState
-     * @param bool $returnResponse
      * @param callable(TRequest): (void)|null $requestModifier
-     * @return OAuthAuthenticator|Response
+     *
      * @throws InvalidStateException
      * @throws ReflectionException
      * @throws InvalidResponseClassException
@@ -122,10 +117,8 @@ class InvestecOAuthConnector extends Connector
      *
      * @template TRequest of Request
      *
-     * @param OAuthAuthenticator|string $refreshToken
-     * @param bool $returnResponse
      * @param callable(TRequest): (void)|null $requestModifier
-     * @return OAuthAuthenticator|Response
+     *
      * @throws ReflectionException
      * @throws InvalidResponseClassException
      * @throws OAuthConfigValidationException
