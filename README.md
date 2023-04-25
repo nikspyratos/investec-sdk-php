@@ -90,6 +90,14 @@ $api = $connector->privateBanking($authenticator);
 $data = $api->getAccounts();
 ```
 
+### Sandbox vs Production
+
+If you need to use the sandbox API, you can do so this way for both connectors:
+```php
+use InvestecSdkPhp\Environment;
+$connector = new InvestecConnector($clientId, $clientSecret, Environment::SANDBOX);
+```
+
 ## Testing
 
 ```bash

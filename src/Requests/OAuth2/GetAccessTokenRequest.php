@@ -10,15 +10,16 @@ class GetAccessTokenRequest extends BaseGetAccessTokenRequest
     {
         return [
             'Content-Type' => 'application/x-www-form-urlencoded',
-            'Authorization' => 'Basic'.base64_encode($this->oauthConfig->getClientId().':'.$this->oauthConfig->getClientSecret()),
+            'Authorization' => 'Basic '.base64_encode($this->oauthConfig->getClientId().':'.$this->oauthConfig->getClientSecret()),
         ];
     }
 
     public function defaultBody(): array
     {
+        //NOTE: At the time of writing, this parameter order is very important. The request will 401 if anything changes.
         return [
-            'grant_type' => 'authorization_code',
             'code' => $this->code,
+            'grant_type' => 'authorization_code',
             'redirect_uri' => $this->oauthConfig->getRedirectUri(),
         ];
     }
