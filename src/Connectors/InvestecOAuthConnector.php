@@ -64,8 +64,9 @@ class InvestecOAuthConnector extends Connector
     ): OAuthAuthenticator|Response {
         $this->oauthConfig()->setRedirectUri($redirectUri);
         $requestModifier = function (GetAccessTokenRequest $request) {
-            $request->withTokenAuth(base64_encode($this->oauthConfig()->getClientId() . ':' . $this->oauthConfig()->getClientSecret()), 'Basic');
+            $request->withTokenAuth(base64_encode($this->oauthConfig()->getClientId().':'.$this->oauthConfig()->getClientSecret()), 'Basic');
         };
+
         return $this->grantGetAccessToken($code, $state, $expectedState, $returnResponse, $requestModifier);
     }
 
