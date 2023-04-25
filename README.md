@@ -1,7 +1,7 @@
 # Investec API SDK for PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nikspyratos/investec-sdk-php.svg?style=flat-square)](https://packagist.org/packages/nikspyratos/investec-sdk-php)
-[![Tests](https://img.shields.io/github/actions/workflow/status/nikspyratos/investec-sdk-php/run-t[![Tests](https://img.shields.io/github/actions/workflow/status/nikspyratos/investec-sdk-php/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/nikspyratos/investec-sdk-php/actions/workflows/run-tests-pest.yml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/nikspyratos/investec-sdk-php/run-tests-pest.yml?branch=main&label=tests&style=flat-square)](https://github.com/nikspyratos/investec-sdk-php/actions/workflows/run-tests-pest.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/nikspyratos/investec-sdk-php.svg?style=flat-square)](https://packagist.org/packages/nikspyratos/investec-sdk-php)
 ---
 
