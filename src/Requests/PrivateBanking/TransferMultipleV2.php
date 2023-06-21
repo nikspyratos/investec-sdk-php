@@ -33,11 +33,12 @@ class TransferMultipleV2 extends Request implements HasBody
                 'beneficiaryAccountId' => $accountInstance->beneficiaryAccountId,
                 'amount' => $accountInstance->amount,
                 'myReference' => $accountInstance->myReference,
-                'theirReference' => $accountInstance->theirReference
+                'theirReference' => $accountInstance->theirReference,
             ];
         }
+
         return [
-            'transferList' => $transferAccountInstances
+            'transferList' => $transferAccountInstances,
         ];
     }
 }

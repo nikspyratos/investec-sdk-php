@@ -33,11 +33,12 @@ class PayMultiple extends Request implements HasBody
                 'beneficiaryId' => $accountInstance->beneficiaryId,
                 'amount' => $accountInstance->amount,
                 'myReference' => $accountInstance->myReference,
-                'theirReference' => $accountInstance->theirReference
+                'theirReference' => $accountInstance->theirReference,
             ];
         }
+
         return [
-            'transferList' => $transferAccountInstances
+            'transferList' => $transferAccountInstances,
         ];
     }
 }
