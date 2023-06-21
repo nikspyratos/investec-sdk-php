@@ -5,11 +5,28 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/nikspyratos/investec-sdk-php.svg?style=flat-square)](https://packagist.org/packages/nikspyratos/investec-sdk-php)
 ---
 
+<!-- TOC -->
+* [Investec API SDK for PHP](#investec-api-sdk-for-php)
+  * [Support](#support)
+  * [Installation](#installation)
+  * [Usage](#usage)
+    * [Personal use](#personal-use)
+    * [Business use](#business-use)
+    * [Environments](#environments)
+    * [Data Transfer Objects](#data-transfer-objects)
+  * [Testing](#testing)
+  * [Roadmap for v0.1.0](#roadmap-for-v010)
+    * [Beyond](#beyond)
+  * [Changelog](#changelog)
+  * [Contributing](#contributing)
+  * [Security Vulnerabilities](#security-vulnerabilities)
+  * [Credits](#credits)
+  * [License](#license)
+<!-- TOC -->
+
 This is a PHP SDK for [Investec's API](https://developer.investec.com/za/api-products/), using [Saloon](https://github.com/Sammyjo20/Saloon).
 
 This is a community-made package, and not directly affiliated with Investec.
-
-All endpoints are on the roadmap, but for now the focus is on the Private Banking API.
 
 ## Support
 
@@ -24,6 +41,12 @@ composer require nikspyratos/investec-sdk-php
 ```
 
 ## Usage
+
+See the [package documentation](DOCUMENTATION.md) and [API documentation](https://developer.investec.com/za/api-products) for more details.
+
+If you're accessing your own account data, see [Personal use](#personal-use). If you're accessing Investec customer data, see [Business use](#business-use).
+
+See [Environments](#environments) for accessing the Sandbox environment.
 
 ### Personal use
 
@@ -51,11 +74,11 @@ $api = $connector->privateBanking($authenticator);
 $data = $api->getAccounts();
 ```
 
-### Business use (3-Legged OAuth)
+### Business use
 
 See [API documentation](https://developer.investec.com/za/api-products) for details.
 
-Your organisation will need to chat with Investec directly to be able to use this.
+Your organisation will need to chat with Investec directly to get access. The Investec API uses an OAuth flow for the customer to grant access to you for their data.
 
 Reminder: This package is not affiliated with Investec.
 
@@ -90,13 +113,22 @@ $api = $connector->privateBanking($authenticator);
 $data = $api->getAccounts();
 ```
 
-### Sandbox vs Production
+### Environments
 
-If you need to use the sandbox API, you can do so this way for both connectors:
+The API offers two environments: Sandbox and Production.
+
+By default this SDK will use the Production environment. To change this, you may specify the environment using the provided enum like so:
+
 ```php
-use InvestecSdkPhp\Environment;
+use InvestecSdkPhp\Enumerations\Environment;
 $connector = new InvestecConnector($clientId, $clientSecret, Environment::SANDBOX);
 ```
+
+### Data Transfer Objects
+
+For `Transfer Multiple` and `Pay Multiple` endpoints, arrays of beneficiaries/accounts are accepted.
+
+To handle this in a structured manner this package uses `dragon-code/simple-dto` to build the DTOs with the required data.
 
 ## Testing
 
@@ -108,12 +140,11 @@ vendor/bin/pest
 
 - Private banking API transfers
 - Stabilise the 3-Legged OAuth flow
-- Tests
 - Linting
 
 ### Beyond
 
-I intend to implement the other endpoint groups (Corporate Banking, Card Code, Forex) as minor releases. Once all are complete and stable, I'll release v1.0.0.
+I intend to implement the other endpoint groups (Corporate Banking, Card Code, Forex) as minor releases.
 
 ## Changelog
 
