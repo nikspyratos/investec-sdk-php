@@ -3,6 +3,7 @@
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
 use Carbon\Carbon;
+use InvestecSdkPhp\Enumerations\TransactionType;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
@@ -14,7 +15,7 @@ class GetAccountTransactionsRequest extends Request
         protected string $accountIdentifier,
         protected ?string $fromDate = null,
         protected ?string $toDate = null,
-        protected ?string $transactionType = null,
+        protected ?TransactionType $transactionType = null,
     ) {
     }
 
@@ -27,7 +28,7 @@ class GetAccountTransactionsRequest extends Request
             $this->toDate ?? Carbon::today()->format('Y-m-d'),
         );
         if ($this->transactionType) {
-            $url .= '&transactionType='.$this->transactionType;
+            $url .= '&transactionType='.$this->transactionType->value;
         }
 
         return $url;

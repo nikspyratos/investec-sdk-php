@@ -2,7 +2,7 @@
 
 namespace InvestecSdkPhp\Connectors;
 
-use InvestecSdkPhp\Environment;
+use InvestecSdkPhp\Enumerations\Environment;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
 use Saloon\Contracts\Authenticator;
 use Saloon\Helpers\OAuth2\OAuthConfig;

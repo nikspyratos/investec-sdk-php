@@ -1,6 +1,6 @@
 <?php
 
-namespace InvestecSdkPhp;
+namespace InvestecSdkPhp\Enumerations;
 
 enum Environment: string
 {

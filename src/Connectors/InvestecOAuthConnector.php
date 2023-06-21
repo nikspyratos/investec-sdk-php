@@ -3,7 +3,7 @@
 namespace InvestecSdkPhp\Connectors;
 
 use InvalidArgumentException;
-use InvestecSdkPhp\Environment;
+use InvestecSdkPhp\Enumerations\Environment;
 use InvestecSdkPhp\Requests\OAuth2\GetAccessTokenRequest;
 use InvestecSdkPhp\Requests\OAuth2\GetRefreshTokenRequest;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
