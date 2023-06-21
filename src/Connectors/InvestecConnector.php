@@ -16,20 +16,11 @@ class InvestecConnector extends Connector
         getAccessToken as traitGetAccessToken;
     }
 
-    private string $clientId;
+    private readonly string $baseUrl;
 
-    private string $clientSecret;
-
-    private string $apiKey;
-
-    private string $baseUrl;
-
-    public function __construct(string $clientId, string $clientSecret, string $apiKey, Environment $environment = Environment::PRODUCTION)
+    public function __construct(private readonly string $clientId, private readonly string $clientSecret, private readonly string $apiKey, Environment $environment = Environment::PRODUCTION)
     {
 
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->apiKey = $apiKey;
         $this->baseUrl = $environment->value;
         $this->oauthConfig()->setClientId($clientId);
         $this->oauthConfig()->setClientSecret($clientSecret);

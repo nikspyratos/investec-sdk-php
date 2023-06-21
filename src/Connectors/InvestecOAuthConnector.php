@@ -25,7 +25,7 @@ class InvestecOAuthConnector extends Connector
         getAuthorizationUrl as grantGetAuthorizationUrl;
     }
 
-    private string $baseUrl;
+    private readonly string $baseUrl;
 
     public function __construct(string $clientId, string $clientSecret, Environment $environment = Environment::PRODUCTION)
     {
@@ -68,14 +68,8 @@ class InvestecOAuthConnector extends Connector
      *
      * @template TRequest of Request
      *
-     * @param string $redirectUri
-     * @param string $code
-     * @param string|null $state
-     * @param string|null $expectedState
-     * @param bool $returnResponse
-     * @param callable(TRequest): (void)|null $requestModifier
+     * @param  callable(TRequest): (void)|null  $requestModifier
      *
-     * @return OAuthAuthenticator|Response
      * @throws InvalidResponseClassException
      * @throws InvalidStateException
      * @throws OAuthConfigValidationException
@@ -123,11 +117,8 @@ class InvestecOAuthConnector extends Connector
      *
      * @template TRequest of Request
      *
-     * @param string|OAuthAuthenticator $refreshToken
-     * @param bool $returnResponse
-     * @param callable(TRequest): (void)|null $requestModifier
+     * @param  callable(TRequest): (void)|null  $requestModifier
      *
-     * @return OAuthAuthenticator|Response
      * @throws InvalidResponseClassException
      * @throws OAuthConfigValidationException
      * @throws PendingRequestException

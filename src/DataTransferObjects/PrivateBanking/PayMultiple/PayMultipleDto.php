@@ -12,13 +12,11 @@ class PayMultipleDto extends DataTransferObject
 
     protected function castAccountInstances(array $accountInstances): array
     {
-        return array_map(static function (array $project) {
-            return TransferAccountInstance::make([
-                'beneficiaryId' => $project['beneficiaryAccountId'],
-                'amount' => $project['amount'],
-                'myReference' => $project['myReference'],
-                'theirReference' => $project['theirReference'],
-            ]);
-        }, $accountInstances);
+        return array_map(static fn (array $project) => TransferAccountInstance::make([
+            'beneficiaryId' => $project['beneficiaryAccountId'],
+            'amount' => $project['amount'],
+            'myReference' => $project['myReference'],
+            'theirReference' => $project['theirReference'],
+        ]), $accountInstances);
     }
 }
