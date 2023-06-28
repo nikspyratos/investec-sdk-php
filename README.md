@@ -136,11 +136,12 @@ To handle this in a structured manner this package uses `dragon-code/simple-dto`
 vendor/bin/pest
 ```
 
-## Roadmap for v0.1.0
+## Roadmap for v1.0.0
 
-- Private banking API transfers
-- Stabilise the 3-Legged OAuth flow
-- Linting
+- ~Private banking API transfers~ DONE
+- ~Stabilise the 3-Legged OAuth flow~ DONE
+- ~Linting~ Pint action works
+- Tests: Sandbox credentials are available, so will use those for testing.
 
 ### Beyond
 

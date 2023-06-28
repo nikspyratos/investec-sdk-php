@@ -8,6 +8,7 @@
     * [Data Transfer Objects](#data-transfer-objects)
     * [Personal use](#personal-use)
     * [Business use](#business-use)
+    * [Authentication scopes](#authentication-scopes)
   * [Available APIs](#available-apis)
     * [Private Banking](#private-banking)
       * [Get Accounts](#get-accounts)
@@ -27,6 +28,7 @@
 ## Links
 
 - [API documentation](https://developer.investec.com/za/api-products)
+- [Investec Programmable Banking Communiti Wiki](https://offerzen.gitbook.io/programmable-banking-community-wiki/home/readme)
 
 ## Setup
 
