@@ -27,9 +27,9 @@ class PayMultiple extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        $transferAccountInstances = [];
+        $payAccountInstances = [];
         foreach ($this->payMultipleDto->accountInstances as $accountInstance) {
-            $transferAccountInstances[] = [
+            $payAccountInstances[] = [
                 'beneficiaryId' => $accountInstance->beneficiaryId,
                 'amount' => $accountInstance->amount,
                 'myReference' => $accountInstance->myReference,
@@ -38,7 +38,7 @@ class PayMultiple extends Request implements HasBody
         }
 
         return [
-            'transferList' => $transferAccountInstances,
+            'paymentList' => $payAccountInstances,
         ];
     }
 }

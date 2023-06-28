@@ -38,11 +38,11 @@ class InvestecConnector extends Connector
         ];
     }
 
-    public function getAccessToken(): Authenticator
+    public function getAccessToken($scopes = ['accounts']): Authenticator
     {
         return $this->traitGetAccessToken(
-            [],
-            '',
+            $scopes,
+            ' ',
             false,
             function (
                 GetClientCredentialsTokenRequest $request
@@ -57,7 +57,7 @@ class InvestecConnector extends Connector
     protected function defaultOauthConfig(): OAuthConfig
     {
         return OAuthConfig::make()
-            ->setDefaultScopes(['accounts', 'transactions'])
+            ->setDefaultScopes(['accounts'])
             ->setTokenEndpoint('/identity/v2/oauth2/token');
     }
 

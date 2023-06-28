@@ -76,6 +76,12 @@ $authenticator = $connector->getAccessToken();
 $api = $connector->privateBanking($authenticator);
 ```
 
+To customise the access token's API scope, you can do so in the `getAccessToken` call:
+```php
+//...
+$authenticator = $connector->getAccessToken(['accounts', 'transactions']);
+```
+
 ### Business use
 
 Your organisation will need to chat with Investec directly to get access. The Investec API uses an OAuth flow for the customer to grant access to you for their data.
@@ -109,6 +115,25 @@ $authenticator = $connector->getAccessToken($redirectUri, $code);
 //Now you can make requests to the appropriate API section, .e.g Private Banking
 $api = $connector->privateBanking($authenticator);
 ```
+
+To customise the access token's API scope, you can do so in the `getAuthorizationUrl` call:
+```php
+//...
+$authUrl = $connector->getAuthorizationUrl($redirectUri, ['accounts', 'transactions']);
+//...
+```
+
+### Authentication scopes
+
+In the Personal & Business use examples above, you're able to specify which scopes you'll be using for this access token.
+
+For Personal use, you'll need to enable the relevant scope permission when you generate your API key. See [Personal use](#personal-use) for more information.
+
+By default only the `accounts` scope is used.
+
+The known scopes are `accounts` and `transactions`. 
+
+There are likely more but they are currently undocumented.
 
 ## Available APIs
 
@@ -156,7 +181,7 @@ $transferMultipleDto = new TransferMultiple\TransferMultipleDto([
     'accountInstances' => [
         [
             'beneficiaryAccountId' => 'XXXX',
-            'amount' => 100_00, //Remember - this is in cents!
+            'amount' => 100, //Remember - this is NOT in cents!
             'myReference' => 'API Transfer',
             'theirReference' => 'API Transfer',
         ]
@@ -180,7 +205,7 @@ $payMultipleDto = new PayMultiple\PayMultipleDto([
     'accountInstances' => [
         [
             'beneficiaryId' => 'XXXX',
-            'amount' => 100_00, //Remember - this is in cents!
+            'amount' => 100, //Remember - this is NOT in cents!
             'myReference' => 'API Transfer',
             'theirReference' => 'API Transfer',
         ]

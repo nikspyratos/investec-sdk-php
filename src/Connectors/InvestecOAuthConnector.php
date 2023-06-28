@@ -55,7 +55,7 @@ class InvestecOAuthConnector extends Connector
             ->setTokenEndpoint('/identity/v2/oauth2/token');
     }
 
-    public function getAuthorizationUrl(string $redirectUri, array $scopes = [], string $state = null, string $scopeSeparator = ' ', array $additionalQueryParameters = []): string
+    public function getAuthorizationUrl(string $redirectUri, array $scopes = ['accounts'], string $state = null, string $scopeSeparator = ' ', array $additionalQueryParameters = []): string
     {
         $this->oauthConfig()->setRedirectUri($redirectUri);
 
