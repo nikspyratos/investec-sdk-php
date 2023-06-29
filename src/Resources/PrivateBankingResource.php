@@ -12,13 +12,13 @@ use InvestecSdkPhp\Requests\PrivateBanking\GetAccountTransactionsRequest;
 use InvestecSdkPhp\Requests\PrivateBanking\GetBeneficiaryCategoriesRequest;
 use InvestecSdkPhp\Requests\PrivateBanking\PayMultiple;
 use InvestecSdkPhp\Requests\PrivateBanking\TransferMultipleV2;
-use Saloon\Contracts\Authenticator;
 use Saloon\Contracts\Connector;
+use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Http\Response;
 
 class PrivateBankingResource extends Resource
 {
-    public function __construct(Connector $connector, Authenticator $authenticator)
+    public function __construct(Connector $connector, OAuthAuthenticator $authenticator)
     {
         parent::__construct($connector);
         $this->connector->authenticate($authenticator);

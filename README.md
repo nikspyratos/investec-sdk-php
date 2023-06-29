@@ -15,7 +15,7 @@
     * [Environments](#environments)
     * [Data Transfer Objects](#data-transfer-objects)
   * [Testing](#testing)
-  * [Roadmap for v0.1.0](#roadmap-for-v010)
+  * [Roadmap for v1.0.0](#roadmap-for-v100)
     * [Beyond](#beyond)
   * [Changelog](#changelog)
   * [Contributing](#contributing)

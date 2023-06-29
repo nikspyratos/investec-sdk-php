@@ -4,7 +4,7 @@ namespace InvestecSdkPhp\Connectors;
 
 use InvestecSdkPhp\Enumerations\Environment;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
-use Saloon\Contracts\Authenticator;
+use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Helpers\OAuth2\OAuthConfig;
 use Saloon\Http\Connector;
 use Saloon\Http\OAuth2\GetClientCredentialsTokenRequest;
@@ -38,7 +38,7 @@ class InvestecConnector extends Connector
         ];
     }
 
-    public function getAccessToken($scopes = ['accounts']): Authenticator
+    public function getAccessToken($scopes = ['accounts']): OAuthAuthenticator
     {
         return $this->traitGetAccessToken(
             $scopes,
@@ -61,7 +61,7 @@ class InvestecConnector extends Connector
             ->setTokenEndpoint('/identity/v2/oauth2/token');
     }
 
-    public function privateBanking(Authenticator $authenticator): PrivateBankingResource
+    public function privateBanking(OAuthAuthenticator $authenticator): PrivateBankingResource
     {
         return new PrivateBankingResource($this, $authenticator);
     }
