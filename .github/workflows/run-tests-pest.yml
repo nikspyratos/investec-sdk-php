@@ -35,3 +35,7 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/pest
+        env:
+          INVESTEC_OPENAPI_CLIENTID: ${{ secrets.INVESTEC_OPENAPI_CLIENTID }}
+          INVESTEC_OPENAPI_SECRET: ${{ secrets.INVESTEC_OPENAPI_SECRET }}
+          INVESTEC_OPENAPI_API_KEY: ${{ secrets.INVESTEC_OPENAPI_API_KEY }}

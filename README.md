@@ -132,6 +132,16 @@ To handle this in a structured manner this package uses `dragon-code/simple-dto`
 
 ## Testing
 
+Tests are set to run with sandbox credentials (which Investec provides us with, luckily).
+
+```bash
+cp .env.example .env
+```
+
+Then, copy the sandbox environment variable values from [here](https://developer.investec.com/za/api-products/documentation/SA_PB_Account_Information#section/Sandbox) into your .env file.
+
+Then, to run tests:
+
 ```bash
 vendor/bin/pest
 ```
@@ -141,7 +151,7 @@ vendor/bin/pest
 - ~Private banking API transfers~ DONE
 - ~Stabilise the 3-Legged OAuth flow~ DONE
 - ~Linting~ Pint action works
-- Tests: Sandbox credentials are available, so will use those for testing.
+- ~Tests: Sandbox credentials are available, so will use those for testing.~ DONE
 
 ### Beyond
 
