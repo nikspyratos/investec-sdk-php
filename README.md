@@ -30,7 +30,8 @@ This is a community-made package, and not directly affiliated with Investec.
 
 ## Support
 
-Buy me a coffee: https://tip-jar.co.za/@thecapegreek
+- [Buy me a coffee](https://tip-jar.co.za/@thecapegreek)
+- I also [consult in the Laravel & payments space](https://nik.software)
 
 ## Installation
 
