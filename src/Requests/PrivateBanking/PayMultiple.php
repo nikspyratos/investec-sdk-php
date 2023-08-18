@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
 use InvestecSdkPhp\DataTransferObjects\PrivateBanking\PayMultiple\PayMultipleDto;
@@ -22,7 +24,7 @@ class PayMultiple extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return '/za/pb/v1/accounts/'.$this->accountIdentifier.'/paymultiple';
+        return '/za/pb/v1/accounts/' . $this->accountIdentifier . '/paymultiple';
     }
 
     protected function defaultBody(): array

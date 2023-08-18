@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
 use Saloon\Enums\Method;
@@ -15,6 +17,6 @@ class GetAccountBalanceRequest extends Request
 
     public function resolveEndpoint(): string
     {
-        return '/za/pb/v1/accounts/'.$this->accountIdentifier.'/balance';
+        return '/za/pb/v1/accounts/' . $this->accountIdentifier . '/balance';
     }
 }

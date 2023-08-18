@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
 use Saloon\Enums\Method;

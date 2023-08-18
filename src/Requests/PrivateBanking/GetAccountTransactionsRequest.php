@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
 use Carbon\Carbon;
@@ -28,7 +30,7 @@ class GetAccountTransactionsRequest extends Request
             $this->toDate ?? Carbon::today()->format('Y-m-d'),
         );
         if ($this->transactionType) {
-            $url .= '&transactionType='.$this->transactionType->value;
+            $url .= '&transactionType=' . $this->transactionType->value;
         }
 
         return $url;

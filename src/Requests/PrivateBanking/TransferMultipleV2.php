@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
 use InvestecSdkPhp\DataTransferObjects\PrivateBanking\TransferMultiple\TransferMultipleDto;
@@ -22,7 +24,7 @@ class TransferMultipleV2 extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return '/za/pb/v1/accounts/'.$this->accountIdentifier.'/transfermultiple';
+        return '/za/pb/v1/accounts/' . $this->accountIdentifier . '/transfermultiple';
     }
 
     protected function defaultBody(): array

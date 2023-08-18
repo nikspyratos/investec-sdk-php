@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\OAuth2;
 
 use Saloon\Http\OAuth2\GetRefreshTokenRequest as BaseGetRefreshTokenRequest;
@@ -10,7 +12,7 @@ class GetRefreshTokenRequest extends BaseGetRefreshTokenRequest
     {
         return [
             'Content-Type' => 'application/x-www-form-urlencoded',
-            'Authorization' => 'Basic '.base64_encode($this->oauthConfig->getClientId().':'.$this->oauthConfig->getClientSecret()),
+            'Authorization' => 'Basic ' . base64_encode($this->oauthConfig->getClientId() . ':' . $this->oauthConfig->getClientSecret()),
         ];
     }
 

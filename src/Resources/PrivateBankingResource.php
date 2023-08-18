@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Resources;
 
 use InvestecSdkPhp\DataTransferObjects\PrivateBanking\PayMultiple\PayMultipleDto;
@@ -26,7 +28,7 @@ class PrivateBankingResource extends Resource
 
     public function getAccounts(): Response
     {
-        return $this->connector->send(new GetAccountsRequest());
+        return $this->connector->send(new GetAccountsRequest);
     }
 
     public function getAccountBalance(string $accountIdentifier): Response
@@ -51,11 +53,11 @@ class PrivateBankingResource extends Resource
 
     public function getBeneficiaries(): Response
     {
-        return $this->connector->send(new GetAccountBeneficiariesRequest());
+        return $this->connector->send(new GetAccountBeneficiariesRequest);
     }
 
     public function getBeneficiaryCategories(): Response
     {
-        return $this->connector->send(new GetBeneficiaryCategoriesRequest());
+        return $this->connector->send(new GetBeneficiaryCategoriesRequest);
     }
 }

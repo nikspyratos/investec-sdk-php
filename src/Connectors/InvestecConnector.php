@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Connectors;
 
 use InvestecSdkPhp\Enumerations\Environment;
@@ -47,7 +49,7 @@ class InvestecConnector extends Connector
             function (
                 GetClientCredentialsTokenRequest $request
             ) {
-                $request->withTokenAuth(base64_encode($this->clientId.':'.$this->clientSecret), 'Basic')
+                $request->withTokenAuth(base64_encode($this->clientId . ':' . $this->clientSecret), 'Basic')
                     ->headers()
                     ->add('x-api-key', $this->apiKey);
             }
