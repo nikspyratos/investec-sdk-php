@@ -12,8 +12,8 @@ use InvestecSdkPhp\Requests\PrivateBanking\GetAccountBeneficiariesRequest;
 use InvestecSdkPhp\Requests\PrivateBanking\GetAccountsRequest;
 use InvestecSdkPhp\Requests\PrivateBanking\GetAccountTransactionsRequest;
 use InvestecSdkPhp\Requests\PrivateBanking\GetBeneficiaryCategoriesRequest;
-use InvestecSdkPhp\Requests\PrivateBanking\PayMultiple;
-use InvestecSdkPhp\Requests\PrivateBanking\TransferMultipleV2;
+use InvestecSdkPhp\Requests\PrivateBanking\PayMultipleRequest;
+use InvestecSdkPhp\Requests\PrivateBanking\TransferMultipleV2Request;
 use Saloon\Contracts\Connector;
 use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Http\Response;
@@ -43,12 +43,12 @@ class PrivateBankingResource extends Resource
 
     public function transferMultiple(string $accountIdentifier, TransferMultipleDto $transferMultipleDTO): Response
     {
-        return $this->connector->send(new TransferMultipleV2($accountIdentifier, $transferMultipleDTO));
+        return $this->connector->send(new TransferMultipleV2Request($accountIdentifier, $transferMultipleDTO));
     }
 
     public function payMultiple(string $accountIdentifier, PayMultipleDto $payMultipleDto): Response
     {
-        return $this->connector->send(new PayMultiple($accountIdentifier, $payMultipleDto));
+        return $this->connector->send(new PayMultipleRequest($accountIdentifier, $payMultipleDto));
     }
 
     public function getBeneficiaries(): Response

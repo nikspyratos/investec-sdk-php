@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
-use InvestecSdkPhp\DataTransferObjects\PrivateBanking\PayMultiple\PayMultipleDto;
+use InvestecSdkPhp\DataTransferObjects\PrivateBanking\TransferMultiple\TransferMultipleDto;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Traits\Body\HasJsonBody;
 
-class PayMultiple extends Request implements HasBody
+class TransferMultipleV2Request extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -18,21 +18,21 @@ class PayMultiple extends Request implements HasBody
 
     public function __construct(
         protected string $accountIdentifier,
-        protected PayMultipleDto $payMultipleDto
+        protected TransferMultipleDto $transferMultipleDto
     ) {
     }
 
     public function resolveEndpoint(): string
     {
-        return '/za/pb/v1/accounts/' . $this->accountIdentifier . '/paymultiple';
+        return '/za/pb/v1/accounts/' . $this->accountIdentifier . '/transfermultiple';
     }
 
     protected function defaultBody(): array
     {
-        $payAccountInstances = [];
-        foreach ($this->payMultipleDto->accountInstances as $accountInstance) {
-            $payAccountInstances[] = [
-                'beneficiaryId' => $accountInstance->beneficiaryId,
+        $transferAccountInstances = [];
+        foreach ($this->transferMultipleDto->accountInstances as $accountInstance) {
+            $transferAccountInstances[] = [
+                'beneficiaryAccountId' => $accountInstance->beneficiaryAccountId,
                 'amount' => $accountInstance->amount,
                 'myReference' => $accountInstance->myReference,
                 'theirReference' => $accountInstance->theirReference,
@@ -40,7 +40,7 @@ class PayMultiple extends Request implements HasBody
         }
 
         return [
-            'paymentList' => $payAccountInstances,
+            'transferList' => $transferAccountInstances,
         ];
     }
 }
