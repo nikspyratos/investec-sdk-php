@@ -17,7 +17,7 @@
         "php": "^8.1",
         "dragon-code/simple-dto": "^2.7",
         "nesbot/carbon": "^2.66",
-        "sammyjo20/saloon": "^2.0"
+        "saloonphp/saloon": "^2.0"
     },
     "require-dev": {
         "laravel/pint": "^1.8",
