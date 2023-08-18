@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use InvestecSdkPhp\Connectors\InvestecConnector;
 use InvestecSdkPhp\Connectors\InvestecOAuthConnector;
 use InvestecSdkPhp\Enumerations\Environment;
@@ -36,8 +38,8 @@ it('generates an OAuth redirect URL', function () {
         ->toBeTruthy()
         ->toContain(
             'scope=accounts',
-            'client_id='.$_ENV['INVESTEC_OPENAPI_CLIENTID'],
-            'redirect_uri='.urlencode($redirectUri),
+            'client_id=' . $_ENV['INVESTEC_OPENAPI_CLIENTID'],
+            'redirect_uri=' . urlencode($redirectUri),
             'response_type=code'
         );
 })
