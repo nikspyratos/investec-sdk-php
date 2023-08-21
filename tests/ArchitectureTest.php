@@ -36,6 +36,11 @@ test('Requests have the correct class and suffix')
     ->toExtend('Saloon\Http\Request')
     ->toUse('Saloon\Enums\Method');
 
+test('Resources have the correct class and suffix')
+    ->expect('InvestecSdkPhp\Resources')
+    ->toHaveSuffix('Resource')
+    ->toExtend(InvestecSdkPhp\Resources\Resource::class);
+
 test('Tests are using strict types and have the correct suffix')
     ->expect('Tests')
     ->toUseStrictTypes()
