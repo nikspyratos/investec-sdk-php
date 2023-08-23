@@ -15,8 +15,8 @@
     * [Environments](#environments)
     * [Data Transfer Objects](#data-transfer-objects)
   * [Testing](#testing)
-  * [Roadmap for v1.0.0](#roadmap-for-v100)
-    * [Beyond](#beyond)
+  * [Roadmap](#roadmap)
+    * [Beta](#beta)
   * [Changelog](#changelog)
   * [Contributing](#contributing)
   * [Security Vulnerabilities](#security-vulnerabilities)
@@ -147,16 +147,19 @@ Then, to run tests:
 vendor/bin/pest
 ```
 
-## Roadmap for v1.0.0
+## Roadmap
 
-- ~Private banking API transfers~ DONE
-- ~Stabilise the 3-Legged OAuth flow~ DONE
-- ~Linting~ Pint action works
-- ~Tests: Sandbox credentials are available, so will use those for testing.~ DONE
+- Implement the other API sections: Card Code, CIB, CIB for Intermediaries, or Forex
 
-### Beyond
+### Beta
 
-I intend to implement the other endpoint groups (Corporate Banking, Card Code, Forex) as minor releases.
+There is currently some code for:
+- Card Code
+- CIB
+
+However, the tests for those are not working, and I have not used these endpoints myself, so I'm not comfortable tagging a release with them.
+
+If you'd like to use these, change your package requirement to `dev-main`.
 
 ## Changelog
 
