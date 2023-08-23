@@ -32,6 +32,9 @@
       * [Execute Simulated Function Code](#execute-simulated-function-code)
       * [Replace Environment Variables](#replace-environment-variables)
       * [Toggle Programmable Card Feature](#toggle-programmable-card-feature)
+    * [Corporate and Institutional Banking](#corporate-and-institutional-banking)
+      * [Get Accounts](#get-accounts-1)
+      * [Get Account Transactions](#get-account-transactions-1)
   * [Tips & Hints](#tips--hints)
     * [Current balance vs Available balance](#current-balance-vs-available-balance)
     * [Transaction dates: posting date, value date, action date, transaction date](#transaction-dates-posting-date-value-date-action-date-transaction-date)
@@ -279,7 +282,11 @@ Returns an array of the beneficiary categories used on the profile. It will also
 
 #### Toggle Programmable Card Feature
 
+### Corporate and Institutional Banking
 
+#### Get Accounts
+
+#### Get Account Transactions
 
 ## Tips & Hints
 
