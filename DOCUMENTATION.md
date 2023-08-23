@@ -18,6 +18,20 @@
       * [Pay Multiple](#pay-multiple)
       * [Get Beneficiaries](#get-beneficiaries)
       * [Get Beneficiary Categories](#get-beneficiary-categories)
+    * [Card Code](#card-code)
+      * [Get Cards](#get-cards)
+      * [Get Function (Saved) Code](#get-function-saved-code)
+      * [Get Function (Published) Code](#get-function-published-code)
+      * [Get Code Executions](#get-code-executions)
+      * [Get Environment Variables](#get-environment-variables)
+      * [Get Countries](#get-countries)
+      * [Get Currencies](#get-currencies)
+      * [Get Merchants](#get-merchants)
+      * [Update Function Code](#update-function-code)
+      * [Publish Saved Code](#publish-saved-code)
+      * [Execute Simulated Function Code](#execute-simulated-function-code)
+      * [Replace Environment Variables](#replace-environment-variables)
+      * [Toggle Programmable Card Feature](#toggle-programmable-card-feature)
   * [Tips & Hints](#tips--hints)
     * [Current balance vs Available balance](#current-balance-vs-available-balance)
     * [Transaction dates: posting date, value date, action date, transaction date](#transaction-dates-posting-date-value-date-action-date-transaction-date)
@@ -236,6 +250,36 @@ $api->getBeneficiaryCategories();
 ```
 
 Returns an array of the beneficiary categories used on the profile. It will also show which one is the default one.
+
+### Card Code
+
+#### Get Cards
+
+#### Get Function (Saved) Code
+
+#### Get Function (Published) Code
+
+#### Get Code Executions
+
+#### Get Environment Variables
+
+#### Get Countries
+
+#### Get Currencies
+
+#### Get Merchants
+
+#### Update Function Code
+
+#### Publish Saved Code
+
+#### Execute Simulated Function Code
+
+#### Replace Environment Variables
+
+#### Toggle Programmable Card Feature
+
+
 
 ## Tips & Hints
 

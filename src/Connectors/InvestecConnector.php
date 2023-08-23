@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace InvestecSdkPhp\Connectors;
 
 use InvestecSdkPhp\Enumerations\Environment;
+use InvestecSdkPhp\Resources\CardCodeResource;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
 use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Helpers\OAuth2\OAuthConfig;
@@ -66,5 +67,10 @@ class InvestecConnector extends Connector
     public function privateBanking(OAuthAuthenticator $authenticator): PrivateBankingResource
     {
         return new PrivateBankingResource($this, $authenticator);
+    }
+
+    public function cardCode(OAuthAuthenticator $authenticator): CardCodeResource
+    {
+        return new CardCodeResource($this, $authenticator);
     }
 }
