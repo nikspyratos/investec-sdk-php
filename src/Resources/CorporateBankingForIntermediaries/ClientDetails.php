@@ -6,7 +6,7 @@ namespace InvestecSdkPhp\Resources\CorporateBankingForIntermediaries;
 
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\ClientDetails\GetClientByAccountNumber;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\ClientDetails\SearchClients;
-use InvestecSdkPhp\Resource;
+use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
 use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;

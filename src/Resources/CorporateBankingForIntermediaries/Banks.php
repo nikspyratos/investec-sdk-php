@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace InvestecSdkPhp\Resources\CorporateBankingForIntermediaries;
 
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Banks\GetBanks;
-use InvestecSdkPhp\Resource;
+use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
 use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;

@@ -9,7 +9,7 @@ use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Introducers\Delete
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Introducers\GetIntroducers;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Introducers\GetIntroducersSummary;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Introducers\UpdateIntroducer;
-use InvestecSdkPhp\Resource;
+use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
 use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;

@@ -14,7 +14,7 @@ use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Accounts\GetInterm
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Accounts\GetPendingTransactions;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Accounts\GetTransactionsHistory;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Accounts\SearchAccounts;
-use InvestecSdkPhp\Resource;
+use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
 use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;

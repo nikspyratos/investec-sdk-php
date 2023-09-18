@@ -9,7 +9,7 @@ use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Categories\DeleteC
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Categories\GetCategories;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Categories\PatchCategory;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Categories\SetDefaultCategory;
-use InvestecSdkPhp\Resource;
+use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
 use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;
