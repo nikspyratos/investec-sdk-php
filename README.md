@@ -16,7 +16,6 @@
     * [Data Transfer Objects](#data-transfer-objects)
   * [Testing](#testing)
   * [Roadmap](#roadmap)
-    * [Beta](#beta)
   * [Changelog](#changelog)
   * [Contributing](#contributing)
   * [Security Vulnerabilities](#security-vulnerabilities)
@@ -45,7 +44,7 @@ composer require nikspyratos/investec-sdk-php
 
 See the [package documentation](DOCUMENTATION.md) and [API documentation](https://developer.investec.com/za/api-products) for more details.
 
-If you're accessing your own account data, see [Internal use](#internal-use). If you're accessing Investec customer data, see [External use](#).
+If you're accessing your own account data, see [Internal use](#internal-use). If you're accessing Investec customer data, see [External use](#external-use).
 
 See [Environments](#environments) for accessing the Sandbox environment.
 
@@ -164,6 +163,9 @@ If you would like to see any of those APIs reach a stable release, please contri
 - Letting us know if it works, any issues you run into, etc.
 - Make a PR with working tests for an API matching the existing testing style, using PestPHP
 - Make a PR updating the [Documentation](DOCUMENTATION.md) with usage guides for the remaining endpoints
+
+Other TODOs:
+- Re-evaluate how token handling and scopes are done in this package - Especially with Saloon's updates.
 
 ## Changelog
 
