@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Resources;
 
 use InvestecSdkPhp\Resources\IntermediaryForexSettlement\BopReports;
@@ -29,5 +31,4 @@ class IntermediaryForexSettlementResource extends Resource
     {
         return $this->forex;
     }
-
 }

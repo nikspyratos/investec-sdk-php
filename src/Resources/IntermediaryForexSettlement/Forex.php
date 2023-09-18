@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Resources\IntermediaryForexSettlement;
 
 use InvestecSdkPhp\Requests\IntermediaryForexSettlement\Forex\GetAccountForexBalances;
@@ -8,12 +10,8 @@ use Saloon\Contracts\Response;
 
 class Forex extends Resource
 {
-    /**
-     * @param string $accountNo
-     * @return Response
-     */
-	public function getAccountForexBalances(string $accountNo): Response
-	{
-		return $this->connector->send(new GetAccountForexBalances($accountNo));
-	}
+    public function getAccountForexBalances(string $accountNo): Response
+    {
+        return $this->connector->send(new GetAccountForexBalances($accountNo));
+    }
 }

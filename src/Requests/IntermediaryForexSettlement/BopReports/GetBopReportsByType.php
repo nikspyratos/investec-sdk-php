@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\IntermediaryForexSettlement\BopReports;
 
 use InvestecSdkPhp\Enumerations\BopReportType;
@@ -11,26 +13,20 @@ use Saloon\Http\Request;
  */
 class GetBopReportsByType extends Request
 {
-	protected Method $method = Method::GET;
+    protected Method $method = Method::GET;
 
+    public function __construct(
+        protected BopReportType $type,
+    ) {
+    }
 
-	public function resolveEndpoint(): string
-	{
-		return "/za/ifi/v1/forex/bop-reports";
-	}
+    public function resolveEndpoint(): string
+    {
+        return '/za/ifi/v1/forex/bop-reports';
+    }
 
-
-    /**
-     * @param BopReportType $type
-     */
-	public function __construct(
-		protected BopReportType $type,
-	) {
-	}
-
-
-	public function defaultQuery(): array
-	{
-		return array_filter(['type' => $this->type->value]);
-	}
+    public function defaultQuery(): array
+    {
+        return array_filter(['type' => $this->type->value]);
+    }
 }
