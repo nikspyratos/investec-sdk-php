@@ -7,6 +7,7 @@ namespace InvestecSdkPhp\Connectors;
 use InvestecSdkPhp\Enumerations\Environment;
 use InvestecSdkPhp\Resources\CardCodeResource;
 use InvestecSdkPhp\Resources\CorporateBankingResource;
+use InvestecSdkPhp\Resources\IntermediaryForexSettlementResource;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
 use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Helpers\OAuth2\OAuthConfig;
@@ -64,6 +65,11 @@ class InvestecConnector extends Connector
     public function corporateBanking(OAuthAuthenticator $authenticator): CorporateBankingResource
     {
         return new CorporateBankingResource($this, $authenticator);
+    }
+
+    public function intermediaryForexSettlement(OAuthAuthenticator $authenticator): IntermediaryForexSettlementResource
+    {
+        return new IntermediaryForexSettlementResource($this, $authenticator);
     }
 
     protected function defaultHeaders(): array

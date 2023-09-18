@@ -9,6 +9,7 @@ use InvestecSdkPhp\Enumerations\Environment;
 use InvestecSdkPhp\Requests\OAuth2\GetAccessTokenRequest;
 use InvestecSdkPhp\Requests\OAuth2\GetRefreshTokenRequest;
 use InvestecSdkPhp\Resources\CorporateBankingForIntermediariesResource;
+use InvestecSdkPhp\Resources\IntermediaryForexSettlementResource;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
 use ReflectionException;
 use Saloon\Contracts\OAuthAuthenticator;
@@ -153,6 +154,11 @@ class InvestecOAuthConnector extends Connector
     public function corporateBankingForIntermediaries(OAuthAuthenticator $authenticator): CorporateBankingForIntermediariesResource
     {
         return new CorporateBankingForIntermediariesResource($this, $authenticator);
+    }
+
+    public function intermediaryForexSettlement(OAuthAuthenticator $authenticator): IntermediaryForexSettlementResource
+    {
+        return new IntermediaryForexSettlementResource($this, $authenticator);
     }
 
     protected function defaultHeaders(): array

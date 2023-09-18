@@ -6,8 +6,8 @@
   * [Setup](#setup)
     * [Environments](#environments)
     * [Data Transfer Objects](#data-transfer-objects)
-    * [Personal use](#personal-use)
-    * [Business use](#business-use)
+    * [Internal use](#internal-use)
+    * [External use](#external-use)
     * [Authentication scopes](#authentication-scopes)
   * [Available APIs](#available-apis)
     * [Private Banking](#private-banking)
@@ -42,6 +42,17 @@
       * [Client Details](#client-details)
       * [Intermediaries](#intermediaries)
       * [Introducers](#introducers)
+  * [Intermediary Forex Settlement](#intermediary-forex-settlement)
+    * [BOP Reports](#bop-reports)
+      * [Get BOP Reports by type](#get-bop-reports-by-type)
+      * [Get BOP Reports by transaction reference](#get-bop-reports-by-transaction-reference)
+      * [Update BOP Report](#update-bop-report)
+      * [Validate BOP Report](#validate-bop-report)
+      * [Get BOP Report Supporting Documents](#get-bop-report-supporting-documents)
+      * [Upload file contents for document handle](#upload-file-contents-for-document-handle)
+      * [Retrieve base64 of supporting document](#retrieve-base64-of-supporting-document)
+      * [Perform action on BOP Report](#perform-action-on-bop-report)
+    * [Forex](#forex)
   * [Tips & Hints](#tips--hints)
     * [Current balance vs Available balance](#current-balance-vs-available-balance)
     * [Transaction dates: posting date, value date, action date, transaction date](#transaction-dates-posting-date-value-date-action-date-transaction-date)
@@ -56,7 +67,7 @@
 
 ## Setup
 
-If you're accessing your own account data, see [Personal use](#personal-use). If you're accessing Investec customer data, see [Business use](#business-use).
+If you're accessing your own account data (either as an individual or corporate), see [Internal use](#internal-use). If you're accessing Investec customer data, see [External use](#external-use).
 
 See the the API documentation for response contents.
 
@@ -79,11 +90,11 @@ For `Transfer Multiple` and `Pay Multiple` endpoints, arrays of beneficiaries/ac
 
 To handle this in a structured manner this package uses `dragon-code/simple-dto` to build the DTOs with the required data.
 
-### Personal use
+### Internal use
 
 Firstly, make sure you've [obtained your API credentials](https://offerzen.gitbook.io/programmable-banking-community-wiki/get-started/api-quick-start-guide#how-to-get-your-api-keys) - this is how you get your client ID, secret and API key.
 
-Note: Personal use access tokens have a lifespan of 30 minutes.
+Note: Internal use access tokens have a lifespan of 30 minutes.
 
 ```php
 use InvestecSdkPhp\Connectors\InvestecConnector;
@@ -108,7 +119,7 @@ To customise the access token's API scope, you can do so in the `getAccessToken`
 $authenticator = $connector->getAccessToken(['accounts', 'transactions']);
 ```
 
-### Business use
+### External use
 
 Your organisation will need to chat with Investec directly to get access. The Investec API uses an OAuth flow for the customer to grant access to you for their data.
 
@@ -151,9 +162,9 @@ $authUrl = $connector->getAuthorizationUrl($redirectUri, ['accounts', 'transacti
 
 ### Authentication scopes
 
-In the Personal & Business use examples above, you're able to specify which scopes you'll be using for this access token.
+In the Personal & External use examples above, you're able to specify which scopes you'll be using for this access token.
 
-For Personal use, you'll need to enable the relevant scope permission when you generate your API key. See [Personal use](#personal-use) for more information.
+For Internal use, you'll need to enable the relevant scope permission when you generate your API key. See [Internal use](#internal-use) for more information.
 
 By default only the `accounts` scope is used.
 
@@ -297,6 +308,8 @@ Returns an array of the beneficiary categories used on the profile. It will also
 
 ### CIB for Intermediaries
 
+**Note**: According to the documentation, this API is only available via the 3-legged OAuth API (i.e. business use for clients), so it is only made available through the `InvesteOAuthConnector` class. 
+
 #### Accounts
 
 #### Banks
@@ -308,6 +321,38 @@ Returns an array of the beneficiary categories used on the profile. It will also
 #### Intermediaries
 
 #### Introducers
+
+## Intermediary Forex Settlement
+
+**Note**: It's unclear if this API is only available for internal or external use. For now, it is added to both connectors.
+
+### BOP Reports
+
+#### Get BOP Reports by type
+
+#### Get BOP Reports by transaction reference
+
+#### Update BOP Report
+
+Not yet implemented.
+
+#### Validate BOP Report
+
+Not yet implemented.
+
+#### Get BOP Report Supporting Documents
+
+#### Upload file contents for document handle
+
+Not yet implemented.
+
+#### Retrieve base64 of supporting document
+
+#### Perform action on BOP Report
+
+**Note**: The only current valid value for `action` is `Approve`.
+
+### Forex
 
 ## Tips & Hints
 

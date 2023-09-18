@@ -10,8 +10,8 @@
   * [Support](#support)
   * [Installation](#installation)
   * [Usage](#usage)
-    * [Personal use](#personal-use)
-    * [Business use](#business-use)
+    * [Internal use](#internal-use)
+    * [External use](#external-use)
     * [Environments](#environments)
     * [Data Transfer Objects](#data-transfer-objects)
   * [Testing](#testing)
@@ -45,15 +45,15 @@ composer require nikspyratos/investec-sdk-php
 
 See the [package documentation](DOCUMENTATION.md) and [API documentation](https://developer.investec.com/za/api-products) for more details.
 
-If you're accessing your own account data, see [Personal use](#personal-use). If you're accessing Investec customer data, see [Business use](#business-use).
+If you're accessing your own account data, see [Internal use](#internal-use). If you're accessing Investec customer data, see [External use](#).
 
 See [Environments](#environments) for accessing the Sandbox environment.
 
-### Personal use
+### Internal use
 
 Firstly, make sure you've [obtained your API credentials](https://offerzen.gitbook.io/programmable-banking-community-wiki/get-started/api-quick-start-guide#how-to-get-your-api-keys) - this is how you get your client ID, secret and API key.
 
-Note: Personal use access tokens have a lifespan of 30 minutes.
+Note: `Internal use` access tokens have a lifespan of 30 minutes.
 
 ```php
 use InvestecSdkPhp\Connectors\InvestecConnector;
@@ -75,7 +75,7 @@ $api = $connector->privateBanking($authenticator);
 $data = $api->getAccounts();
 ```
 
-### Business use
+### External use
 
 See [API documentation](https://developer.investec.com/za/api-products) for details.
 
@@ -149,18 +149,21 @@ vendor/bin/pest
 
 ## Roadmap
 
-- Implement the other API sections: Card Code, CIB, CIB for Intermediaries, or Forex
+Using the excellent [Saloon SDK Generator](https://github.com/crescat-io/saloon-sdk-generator), the remaining APIs have been implemented, save for some Forex API endpoints:
+- `Update BOP Report` - the input is massive and has several nested arrays and objects, resulting in a DTO nightmare currently.
+- `Validate BOP Report` - similar issues to `Update BOP Report`.
+- `Upload file contents for document handle` - documentation is unclear on how to fill in this data.
 
-### Beta
-
-There is currently some code for:
-- Card Code
-- CIB
-- CIB for Intermediaries
-
-However, the tests for those are not working, and I have not used these endpoints myself, so I'm not comfortable tagging a release with them.
+For the implemented endpoints, tests are either not working (sandbox credentials issue) or are unwritten. Given that, I'm not comfortable releasing a new stable version for these APIs.
 
 If you'd like to use these, change your package requirement to `dev-main`.
+
+At this time, there also hasn't been much demand for these APIs in this SDK, so it's preferrable to not do more work for code that won't be used.
+
+If you would like to see any of those APIs reach a stable release, please contribute by:
+- Letting us know if it works, any issues you run into, etc.
+- Make a PR with working tests for an API matching the existing testing style, using PestPHP
+- Make a PR updating the [Documentation](DOCUMENTATION.md) with usage guides for the remaining endpoints
 
 ## Changelog
 
@@ -178,6 +181,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 - [Nik Spyratos](https://github.com/nikspyratos)
 - [All Contributors](../../contributors)
+- [Saloon](https://docs.saloon.dev)
+- [Saloon SDK Generator](https://github.com/crescat-io/saloon-sdk-generator) for speeding up the work on the remaining APIs!
 
 ## License
 
