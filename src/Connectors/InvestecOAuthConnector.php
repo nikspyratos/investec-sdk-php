@@ -55,14 +55,8 @@ class InvestecOAuthConnector extends Connector
      *
      * @template TRequest of Request
      *
-     * @param string $redirectUri
-     * @param string $code
-     * @param string|null $state
-     * @param string|null $expectedState
-     * @param bool $returnResponse
-     * @param callable(TRequest): (void)|null $requestModifier
+     * @param  callable(TRequest): (void)|null  $requestModifier
      *
-     * @return OAuthAuthenticator|Response
      * @throws InvalidResponseClassException
      * @throws InvalidStateException
      * @throws OAuthConfigValidationException

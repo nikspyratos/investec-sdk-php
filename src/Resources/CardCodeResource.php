@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Resources;
 
 use InvestecSdkPhp\DataTransferObjects\CardCode\ExecuteFunctionCodeDto;
-use InvestecSdkPhp\Requests\CardCode\GetCountriesRequest;
-use InvestecSdkPhp\Requests\CardCode\GetCurrenciesRequest;
-use InvestecSdkPhp\Requests\CardCode\GetMerchantsRequest;
-use InvestecSdkPhp\Requests\CardCode\ToggleProgrammableCardEnabledRequest;
 use InvestecSdkPhp\Requests\CardCode\ExecuteFunctionCodeRequest;
 use InvestecSdkPhp\Requests\CardCode\GetCardsRequest;
+use InvestecSdkPhp\Requests\CardCode\GetCountriesRequest;
+use InvestecSdkPhp\Requests\CardCode\GetCurrenciesRequest;
 use InvestecSdkPhp\Requests\CardCode\GetFunctionCodeRequest;
 use InvestecSdkPhp\Requests\CardCode\GetFunctionEnvironmentVariablesRequest;
 use InvestecSdkPhp\Requests\CardCode\GetFunctionExecutionsRequest;
+use InvestecSdkPhp\Requests\CardCode\GetMerchantsRequest;
 use InvestecSdkPhp\Requests\CardCode\GetPublishedCodeRequest;
 use InvestecSdkPhp\Requests\CardCode\PublishFunctionCodeRequest;
+use InvestecSdkPhp\Requests\CardCode\ToggleProgrammableCardEnabledRequest;
 use InvestecSdkPhp\Requests\CardCode\UpdateFunctionCodeRequest;
 use InvestecSdkPhp\Requests\CardCode\UpdateFunctionEnvironmentVariablesRequest;
 use Saloon\Contracts\Connector;
@@ -30,7 +32,7 @@ class CardCodeResource extends Resource
 
     public function getCards(): Response
     {
-        return $this->connector->send(new GetCardsRequest());
+        return $this->connector->send(new GetCardsRequest);
     }
 
     public function getSavedFunctionCode(string $cardKey): Response

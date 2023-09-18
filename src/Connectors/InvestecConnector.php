@@ -35,13 +35,6 @@ class InvestecConnector extends Connector
         return $this->baseUrl;
     }
 
-    protected function defaultHeaders(): array
-    {
-        return [
-            'Accept' => 'application/json',
-        ];
-    }
-
     public function getAccessToken($scopes = ['accounts']): OAuthAuthenticator
     {
         return $this->traitGetAccessToken(
@@ -58,13 +51,6 @@ class InvestecConnector extends Connector
         );
     }
 
-    protected function defaultOauthConfig(): OAuthConfig
-    {
-        return OAuthConfig::make()
-            ->setDefaultScopes(['accounts'])
-            ->setTokenEndpoint('/identity/v2/oauth2/token');
-    }
-
     public function privateBanking(OAuthAuthenticator $authenticator): PrivateBankingResource
     {
         return new PrivateBankingResource($this, $authenticator);
@@ -78,5 +64,19 @@ class InvestecConnector extends Connector
     public function corporateBanking(OAuthAuthenticator $authenticator): CorporateBankingResource
     {
         return new CorporateBankingResource($this, $authenticator);
+    }
+
+    protected function defaultHeaders(): array
+    {
+        return [
+            'Accept' => 'application/json',
+        ];
+    }
+
+    protected function defaultOauthConfig(): OAuthConfig
+    {
+        return OAuthConfig::make()
+            ->setDefaultScopes(['accounts'])
+            ->setTokenEndpoint('/identity/v2/oauth2/token');
     }
 }

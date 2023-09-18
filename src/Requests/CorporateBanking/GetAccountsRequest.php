@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\CorporateBanking;
 
 use Saloon\Enums\Method;
@@ -12,16 +14,14 @@ use Saloon\Http\Request;
  */
 class GetAccountsRequest extends Request
 {
-	protected Method $method = Method::GET;
+    protected Method $method = Method::GET;
 
+    public function __construct()
+    {
+    }
 
-	public function resolveEndpoint(): string
-	{
-		return "/za/bb/v1/accounts";
-	}
-
-
-	public function __construct()
-	{
-	}
+    public function resolveEndpoint(): string
+    {
+        return '/za/bb/v1/accounts';
+    }
 }
