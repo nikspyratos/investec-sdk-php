@@ -69,7 +69,7 @@ class PrivateBankingResource extends Resource
 
     public function getProfiles(): Response
     {
-        return $this->connector->send(new GetProfiles());
+        return $this->connector->send(new GetProfiles);
     }
 
     public function getProfileAccounts(string $profileId): Response

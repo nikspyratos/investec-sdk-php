@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
 use Carbon\Carbon;
@@ -10,6 +12,13 @@ class GetDocuments extends Request
 {
     protected Method $method = Method::GET;
 
+    public function __construct(
+        protected string $accountId,
+        protected ?string $fromDate = null,
+        protected ?string $toDate = null,
+    ) {
+    }
+
     public function resolveEndpoint(): string
     {
         return sprintf(
@@ -18,12 +27,5 @@ class GetDocuments extends Request
             $this->fromDate ?? Carbon::today()->subMonth()->format('Y-m-d'),
             $this->toDate ?? Carbon::today()->format('Y-m-d'),
         );
-    }
-
-    public function __construct(
-        protected string $accountId,
-        protected ?string $fromDate = null,
-        protected ?string $toDate = null,
-    ) {
     }
 }
