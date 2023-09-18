@@ -156,6 +156,7 @@ vendor/bin/pest
 There is currently some code for:
 - Card Code
 - CIB
+- CIB for Intermediaries
 
 However, the tests for those are not working, and I have not used these endpoints myself, so I'm not comfortable tagging a release with them.
 

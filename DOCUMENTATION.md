@@ -35,6 +35,13 @@
     * [Corporate and Institutional Banking](#corporate-and-institutional-banking)
       * [Get Accounts](#get-accounts-1)
       * [Get Account Transactions](#get-account-transactions-1)
+    * [CIB for Intermediaries](#cib-for-intermediaries)
+      * [Accounts](#accounts)
+      * [Banks](#banks)
+      * [Categories](#categories)
+      * [Client Details](#client-details)
+      * [Intermediaries](#intermediaries)
+      * [Introducers](#introducers)
   * [Tips & Hints](#tips--hints)
     * [Current balance vs Available balance](#current-balance-vs-available-balance)
     * [Transaction dates: posting date, value date, action date, transaction date](#transaction-dates-posting-date-value-date-action-date-transaction-date)
@@ -287,6 +294,20 @@ Returns an array of the beneficiary categories used on the profile. It will also
 #### Get Accounts
 
 #### Get Account Transactions
+
+### CIB for Intermediaries
+
+#### Accounts
+
+#### Banks
+
+#### Categories
+
+#### Client Details
+
+#### Intermediaries
+
+#### Introducers
 
 ## Tips & Hints
 

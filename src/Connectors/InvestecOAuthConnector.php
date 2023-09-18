@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use InvestecSdkPhp\Enumerations\Environment;
 use InvestecSdkPhp\Requests\OAuth2\GetAccessTokenRequest;
 use InvestecSdkPhp\Requests\OAuth2\GetRefreshTokenRequest;
+use InvestecSdkPhp\Resources\CorporateBankingForIntermediariesResource;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
 use ReflectionException;
 use Saloon\Contracts\OAuthAuthenticator;
@@ -41,22 +42,6 @@ class InvestecOAuthConnector extends Connector
         return $this->baseUrl;
     }
 
-    protected function defaultHeaders(): array
-    {
-        return [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-        ];
-    }
-
-    protected function defaultOauthConfig(): OAuthConfig
-    {
-        return OAuthConfig::make()
-            ->setDefaultScopes(['accounts', 'balances', 'transactions'])
-            ->setAuthorizeEndpoint('/identity/v2/oauth2/authorize')
-            ->setTokenEndpoint('/identity/v2/oauth2/token');
-    }
-
     public function getAuthorizationUrl(string $redirectUri, array $scopes = ['accounts'], ?string $state = null, string $scopeSeparator = ' ', array $additionalQueryParameters = []): string
     {
         $this->oauthConfig()->setRedirectUri($redirectUri);
@@ -70,8 +55,14 @@ class InvestecOAuthConnector extends Connector
      *
      * @template TRequest of Request
      *
-     * @param  callable(TRequest): (void)|null  $requestModifier
+     * @param string $redirectUri
+     * @param string $code
+     * @param string|null $state
+     * @param string|null $expectedState
+     * @param bool $returnResponse
+     * @param callable(TRequest): (void)|null $requestModifier
      *
+     * @return OAuthAuthenticator|Response
      * @throws InvalidResponseClassException
      * @throws InvalidStateException
      * @throws OAuthConfigValidationException
@@ -163,5 +154,26 @@ class InvestecOAuthConnector extends Connector
     public function privateBanking(OAuthAuthenticator $authenticator): PrivateBankingResource
     {
         return new PrivateBankingResource($this, $authenticator);
+    }
+
+    public function corporateBankingForIntermediaries(OAuthAuthenticator $authenticator): CorporateBankingForIntermediariesResource
+    {
+        return new CorporateBankingForIntermediariesResource($this, $authenticator);
+    }
+
+    protected function defaultHeaders(): array
+    {
+        return [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ];
+    }
+
+    protected function defaultOauthConfig(): OAuthConfig
+    {
+        return OAuthConfig::make()
+            ->setDefaultScopes(['accounts', 'balances', 'transactions'])
+            ->setAuthorizeEndpoint('/identity/v2/oauth2/authorize')
+            ->setTokenEndpoint('/identity/v2/oauth2/token');
     }
 }

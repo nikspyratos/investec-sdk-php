@@ -6,6 +6,7 @@ All notable changes to `nikspyratos/investec-sdk-php` will be documented in this
 
 - Card Code API
 - CIB API
+- CIB for Intermediaries API
 
 ## v1.0.0 - 2023-06-29
 
