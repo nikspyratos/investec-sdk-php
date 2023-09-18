@@ -221,3 +221,5 @@ it('pays money to beneficiaries', function () {
         ]);
 })
     ->group('private-banking');
+
+//TODO: Profile, documents endpoints

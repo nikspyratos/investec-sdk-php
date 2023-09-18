@@ -18,6 +18,12 @@
       * [Pay Multiple](#pay-multiple)
       * [Get Beneficiaries](#get-beneficiaries)
       * [Get Beneficiary Categories](#get-beneficiary-categories)
+      * [Get Profiles](#get-profiles)
+      * [Get Profile Accounts](#get-profile-accounts)
+      * [Get Authorisation Setup Details](#get-authorisation-setup-details)
+      * [Get Profile Beneficiaries](#get-profile-beneficiaries)
+      * [Get Documents](#get-documents)
+      * [Get Document](#get-document)
     * [Card Code](#card-code)
       * [Get Cards](#get-cards)
       * [Get Function (Saved) Code](#get-function-saved-code)
@@ -271,6 +277,56 @@ $api->getBeneficiaryCategories();
 ```
 
 Returns an array of the beneficiary categories used on the profile. It will also show which one is the default one.
+
+#### Get Profiles
+
+```php
+$api->getProfiles();
+```
+
+Lists all profiles.
+
+#### Get Profile Accounts
+
+```php
+$api->getProfileAccounts($profileId);
+```
+
+Lists accounts for the given profile.
+
+#### Get Authorisation Setup Details
+
+```php
+$api->getAuthorisationSetupDetails($profileId, $accountId);
+```
+
+List the authorisation setup details for the specified profile and accounts.
+
+#### Get Profile Beneficiaries
+
+```php
+$api->getProfileBeneficiaries($profileId, $accountId);
+```
+
+Lists beneficiaries available to the given profile & account.
+
+#### Get Documents
+
+**Note**: This and [Get Document](#get-document) both require your API token to have the `taxcertificates` or `statements` scopes.
+
+```php
+$api->getDocuments($accountId, $fromDate, $toDate);
+```
+
+Lists available documents in the given date range. Otherwise defaults to documents available in the last month until today.
+
+#### Get Document
+
+```php
+$api->getDocument($accountId, $documentType, $documentDate);
+```
+
+Retrieves the specified document type using the account ID, docuemnt type and date.
 
 ### Card Code
 
