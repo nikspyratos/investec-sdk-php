@@ -40,6 +40,14 @@ You can install the package via composer:
 composer require nikspyratos/investec-sdk-php
 ```
 
+**NOTE**: Currently, the stable release only includes support for authorization (both personal and 3-legged OAuth) and the Private Banking API. Other APIs are written but untested. See [Roadmap](#roadmap) for more details.
+
+If you would like to use these other APIs, install from the `main` branch:
+
+```bash
+composer require nikspyratos/investec-sdk-php:"dev-main"
+```
+
 ## Usage
 
 See the [package documentation](DOCUMENTATION.md) and [API documentation](https://developer.investec.com/za/api-products) for more details.
