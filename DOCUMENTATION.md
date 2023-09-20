@@ -172,11 +172,24 @@ In the Personal & External use examples above, you're able to specify which scop
 
 For Internal use, you'll need to enable the relevant scope permission when you generate your API key. See [Internal use](#internal-use) for more information.
 
-By default only the `accounts` scope is used.
+The scopes available are:
+```
+accounts
+balances
+beneficiarypayments
+cards
+statements
+taxcertificates
+transactions
+transfers
+```
 
-The known scopes are `accounts` and `transactions`. 
+By default only the `accounts` scope is used. To change the scopes used, you can do this:
 
-There are likely more but they are currently undocumented.
+```php
+$scopes = [...]; //your scopes here
+$connector->oauthConfig()->setDefaultScopes($scopes);
+```
 
 ## Available APIs
 
