@@ -154,26 +154,28 @@ Then, to run tests:
 vendor/bin/pest
 ```
 
-## Roadmap
+## TODO
 
-Using the excellent [Saloon SDK Generator](https://github.com/crescat-io/saloon-sdk-generator), the remaining APIs have been implemented, save for some Forex API endpoints:
+1. Using the excellent [Saloon SDK Generator](https://github.com/crescat-io/saloon-sdk-generator), the remaining APIs have been implemented, save for some Forex API endpoints:
 - `Update BOP Report` - the input is massive and has several nested arrays and objects, resulting in a DTO nightmare currently.
 - `Validate BOP Report` - similar issues to `Update BOP Report`.
 - `Upload file contents for document handle` - documentation is unclear on how to fill in this data.
 
-For the implemented endpoints, tests are either not working (sandbox credentials issue) or are unwritten. Given that, I'm not comfortable releasing a new stable version for these APIs.
-
+2. For the implemented endpoints, tests are either not working (sandbox credentials issue) or are unwritten. Given that, I'm not comfortable releasing a new stable version for these APIs.
 If you'd like to use these, change your package requirement to `dev-main`.
-
 At this time, there also hasn't been much demand for these APIs in this SDK, so it's preferrable to not do more work for code that won't be used.
-
 If you would like to see any of those APIs reach a stable release, please contribute by:
 - Letting us know if it works, any issues you run into, etc.
 - Make a PR with working tests for an API matching the existing testing style, using PestPHP
 - Make a PR updating the [Documentation](DOCUMENTATION.md) with usage guides for the remaining endpoints
 
-Other TODOs:
-- Re-evaluate how token handling and scopes are done in this package - Especially with Saloon's updates.
+TODOs:
+- Re-evaluate how token handling and scopes are done in this package - Especially with Saloon's updates since launch ([1](https://twitter.com/carre_sam/status/1674423476579627008)), some of it may now be redundant.
+- [Upgrade to Saloon v3](https://docs.saloon.dev/upgrade/whats-new-in-v3)
+- Re-evaluate existing implemented endpoints - may be changes due to API request/response additions/changes
+- Implement remaining endpoints described above
+- Get existing tests working again either with sandbox credentials or with mocking
+- Tests for remaining API endpoint groups
 
 ## Changelog
 
