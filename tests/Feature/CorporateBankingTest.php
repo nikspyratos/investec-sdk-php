@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Carbon\Carbon;
 use InvestecSdkPhp\Connectors\InvestecConnector;
 use InvestecSdkPhp\Enumerations\Environment;
-use Saloon\Contracts\Response;
+use Saloon\Http\Response;
 
 $connector = null;
 $authenticator = null;

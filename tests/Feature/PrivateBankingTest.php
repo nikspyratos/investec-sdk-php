@@ -7,7 +7,7 @@ use InvestecSdkPhp\Connectors\InvestecConnector;
 use InvestecSdkPhp\DataTransferObjects\PrivateBanking\PayMultiple\PayMultipleDto;
 use InvestecSdkPhp\DataTransferObjects\PrivateBanking\TransferMultiple\TransferMultipleDto;
 use InvestecSdkPhp\Enumerations\Environment;
-use Saloon\Contracts\Response;
+use Saloon\Http\Response;
 
 $connector = null;
 $authenticator = null;
@@ -52,8 +52,8 @@ it('gets accounts', function () {
     ->group('private-banking');
 
 it('gets account balance', function () {
-    $accountIdentifier = $this->privateBankingClient->getAccounts()->json('data.accounts.0')['accountId'];
-    $response = $this->privateBankingClient->getAccountBalance($accountIdentifier);
+    $accountId = $this->privateBankingClient->getAccounts()->json('data.accounts.0')['accountId'];
+    $response = $this->privateBankingClient->getAccountBalance($accountId);
     expect($response->status())
         ->toBe(200)
         ->and($response->json())
@@ -71,10 +71,10 @@ it('gets account balance', function () {
     ->group('private-banking');
 
 it('gets account transactions', function () {
-    $accountIdentifier = $this->privateBankingClient->getAccounts()->json('data.accounts.0')['accountId'];
+    $accountId = $this->privateBankingClient->getAccounts()->json('data.accounts.0')['accountId'];
     $fromDate = Carbon::yesterday()->toDateString();
     $toDate = Carbon::today()->toDateString();
-    $response = $this->privateBankingClient->getAccountTransactions($accountIdentifier, $fromDate, $toDate);
+    $response = $this->privateBankingClient->getAccountTransactions($accountId, $fromDate, $toDate);
     expect($response->status())
         ->toBe(200)
         ->and($response->json())
@@ -151,12 +151,12 @@ it('gets beneficiary categories', function () {
     ->group('private-banking');
 
 it('transfers money between accounts', function () {
-    $accountIdentifiers = array_column($this->privateBankingClient->getAccounts()->json('data.accounts'), 'accountId');
+    $accountIds = array_column($this->privateBankingClient->getAccounts()->json('data.accounts'), 'accountId');
     $accountInstances = [];
     //Only picking two out since there is potential for many transfers to occur here
-    foreach (array_slice($accountIdentifiers, 1, 2) as $accountIdentifier) {
+    foreach (array_slice($accountIds, 1, 2) as $accountId) {
         $accountInstances[] = [
-            'beneficiaryAccountId' => $accountIdentifier,
+            'beneficiaryAccountId' => $accountId,
             'amount' => 1,
             'myReference' => 'API Transfer',
             'theirReference' => 'API Transfer',
@@ -164,7 +164,7 @@ it('transfers money between accounts', function () {
     }
     $transferMultipleDto = new TransferMultipleDto(['accountInstances' => $accountInstances]);
     /** @var Response $response */
-    $response = $this->privateBankingClient->transferMultiple($accountIdentifiers[0], $transferMultipleDto);
+    $response = $this->privateBankingClient->transferMultiple($accountIds[0], $transferMultipleDto);
     expect($response->status())
         ->toBe(200)
         ->and($response->json())
@@ -185,7 +185,7 @@ it('transfers money between accounts', function () {
     ->group('private-banking');
 
 it('pays money to beneficiaries', function () {
-    $accountIdentifier = $this->privateBankingClient->getAccounts()->json('data.accounts.0')['accountId'];
+    $accountId = $this->privateBankingClient->getAccounts()->json('data.accounts.0')['accountId'];
     //Only picking two out since there is potential for many payments to occur here
     $beneficiaryIds = array_column(
         array_slice($this->privateBankingClient->getBeneficiaries()->json('data'), 0, 2),
@@ -202,7 +202,7 @@ it('pays money to beneficiaries', function () {
     }
     $payMultipleDto = new PayMultipleDto(['accountInstances' => $accountInstances]);
     /** @var Response $response */
-    $response = $this->privateBankingClient->payMultiple($accountIdentifier, $payMultipleDto);
+    $response = $this->privateBankingClient->payMultiple($accountId, $payMultipleDto);
     expect($response->status())
         ->toBe(200)
         ->and($response->json())
@@ -222,4 +222,142 @@ it('pays money to beneficiaries', function () {
 })
     ->group('private-banking');
 
-//TODO: Profile, documents endpoints
+it('gets profiles', function () {
+    /** @var Response $response */
+    $response = $this->privateBankingClient->getProfiles();
+    expect($response->status())
+        ->toBe(200)
+        ->and($response->json())
+        ->toBeArray()
+        ->toHaveKeys(['data'])
+        ->and($response->json('data'))
+        ->each
+        ->toHaveCount(3) //Canary if field count changes
+        ->toHaveKeys([
+            'profileId',
+            'profileName',
+            'defaultProfile',
+        ]);
+})
+    ->group('private-banking');
+
+it('gets profile accounts', function () {
+    /** @var Response $response */
+    $profileId = $this->privateBankingClient->getProfiles()->json('data')[0]['profileId'];
+    $response = $this->privateBankingClient->getProfileAccounts($profileId);
+    expect($response->status())
+        ->toBe(200)
+        ->and($response->json())
+        ->toBeArray()
+        ->toHaveKeys(['data'])
+        ->and($response->json('data'))
+        ->each
+        ->toHaveCount(8) //Canary if field count changes
+        ->toHaveKeys([
+            'accountId',
+            'accountNumber',
+            'accountName',
+            'referenceName',
+            'productName',
+            'kycCompliant',
+            'profileId',
+            'profileName',
+        ]);
+})
+    ->group('private-banking');
+
+it('gets authorisation setup details', function () {
+    /** @var Response $response */
+    $profileId = $this->privateBankingClient->getProfiles()->json('data')[0]['profileId'];
+    $accountId = $this->privateBankingClient->getProfileAccounts($profileId)->json('data')[0]['accountId'];
+    $response = $this->privateBankingClient->getAuthorisationSetupDetails($profileId, $accountId);
+    expect($response->status())
+        ->toBe(200)
+        ->and($response->json())
+        ->toBeArray()
+        ->toHaveKeys([
+            'data.numberOfAuthorisationRequired',
+            'data.period',
+        ]);
+    $authorisersKeyList = [];
+    $numberOfLoops = $response->json('data.numberOfAuthorisationRequired') + 1;
+    for ($i = 1; $i < $numberOfLoops; $i++) {
+        $authorisersKeyList[] = 'data.authorisersList' . strtoupper(chr($i + 96));
+    }
+    expect($response->json())
+        ->toHaveKeys($authorisersKeyList)
+        ->and($response->json('data.period'))
+        ->toBeArray()
+        ->and($response->json('data.period'))
+        ->each
+        ->toHaveCount(2) //Canary if field count changes
+        ->toHaveKeys([
+            'id',
+            'description',
+        ]);
+    foreach ($authorisersKeyList as $authoriser) {
+        expect($response->json($authoriser))
+            ->toBeArray()
+            ->each
+            ->toHaveCount(2) //Canary if field count changes
+            ->toHaveKeys([
+                'authoriserId',
+                'name',
+            ]);
+    }
+})
+    ->group('private-banking');
+
+it('gets profile beneficiaries', function () {
+    /** @var Response $response */
+    $profileId = $this->privateBankingClient->getProfiles()->json('data')[0]['profileId'];
+    $accountId = $this->privateBankingClient->getProfileAccounts($profileId)->json('data')[0]['accountId'];
+    $response = $this->privateBankingClient->getProfileBeneficiaries($profileId, $accountId);
+    expect($response->status())
+        ->toBe(200)
+        ->and($response->json())
+        ->toBeArray()
+        ->toHaveKeys(['data'])
+        ->and($response->json('data'))
+        ->each
+        ->toHaveCount(15) //Canary if field count changes
+        ->toHaveKeys([
+            'beneficiaryId',
+            'accountNumber',
+            'code',
+            'bank',
+            'beneficiaryName',
+            'lastPaymentAmount',
+            'lastPaymentDate',
+            'cellNo',
+            'emailAddress',
+            'name',
+            'referenceAccountNumber',
+            'referenceName',
+            'categoryId',
+            'profileId',
+            'fasterPaymentAllowed',
+        ]);
+})
+    ->group('private-banking');
+
+it('gets documents', function () {
+    $accountId = $this->privateBankingClient->getAccounts()->json('data.accounts.0')['accountId'];
+    //Untested date filters as sandbox has docs from 2023
+    $response = $this->privateBankingClient->getDocuments($accountId);
+    expect($response->status())
+        ->toBe(200)
+        ->and($response->json())
+        ->toBeArray()
+        ->toHaveKeys(['data'])
+        ->and($response->json('data'))
+        ->each
+        ->toHaveCount(2) //Canary if field count changes
+        ->toHaveKeys([
+            'documentType',
+            'documentDate',
+        ]);
+})
+    ->group('private-banking');
+
+//TODO Get document
