@@ -17,6 +17,6 @@ class GetProfileBeneficiaries extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/za/pb/v1/profiles/{$this->profileId}/beneficiaries/{$this->accountId}/";
+        return "/za/pb/v1/profiles/{$this->profileId}/accounts/{$this->accountId}/beneficiaries";
     }
 }

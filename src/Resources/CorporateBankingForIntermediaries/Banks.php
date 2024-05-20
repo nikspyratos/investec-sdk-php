@@ -7,16 +7,16 @@ namespace InvestecSdkPhp\Resources\CorporateBankingForIntermediaries;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Banks\GetBanks;
 use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
-use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
+use Saloon\Http\Response;
 
 class Banks extends Resource
 {
     /**
-     * @param  string|null  $sort Can be either asc or desc
-     * @param  int|null  $page Must be greater than 0
-     * @param  int|null  $pageSize Min = 10, Max = 100
+     * @param  string|null  $sort  Can be either asc or desc
+     * @param  int|null  $page  Must be greater than 0
+     * @param  int|null  $pageSize  Min = 10, Max = 100
      *
      * @throws ReflectionException
      * @throws InvalidResponseClassException

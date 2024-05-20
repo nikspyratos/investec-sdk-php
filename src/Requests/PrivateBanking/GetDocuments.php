@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace InvestecSdkPhp\Requests\PrivateBanking;
 
-use Carbon\Carbon;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 
@@ -21,11 +20,31 @@ class GetDocuments extends Request
 
     public function resolveEndpoint(): string
     {
-        return sprintf(
-            '/za/pb/v1/accounts/%s/documents?fromDate=%s&toDate=%s',
-            $this->accountId,
-            $this->fromDate ?? Carbon::today()->subMonth()->format('Y-m-d'),
-            $this->toDate ?? Carbon::today()->format('Y-m-d'),
+        $endpoint = sprintf(
+            '/za/pb/v1/accounts/%s/documents',
+            $this->accountId
         );
+        if ($this->fromDate && ! $this->toDate) {
+            $endpoint = sprintf(
+                '%s?fromDate=%s',
+                $endpoint,
+                $this->fromDate,
+            );
+        } elseif (! $this->fromDate && $this->toDate) {
+            $endpoint = sprintf(
+                '%s?toDate=%s',
+                $endpoint,
+                $this->toDate,
+            );
+        } elseif ($this->fromDate && $this->toDate) {
+            $endpoint = sprintf(
+                '%s?fromDate=%s&toDate=%s',
+                $endpoint,
+                $this->fromDate,
+                $this->toDate,
+            );
+        }
+
+        return $endpoint;
     }
 }

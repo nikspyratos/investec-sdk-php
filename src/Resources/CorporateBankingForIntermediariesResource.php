@@ -13,6 +13,9 @@ use InvestecSdkPhp\Resources\CorporateBankingForIntermediaries\Introducers;
 use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Http\Connector;
 
+/**
+ * @experimental Implemented according to spec, but untested. Please contribute fixes and tests if you use this!
+ */
 class CorporateBankingForIntermediariesResource extends Resource
 {
     private Accounts $accounts;

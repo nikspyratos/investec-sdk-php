@@ -12,7 +12,7 @@ use InvestecSdkPhp\Requests\IntermediaryForexSettlement\BopReports\GetBopReports
 use InvestecSdkPhp\Requests\IntermediaryForexSettlement\BopReports\GetBopReportsByType;
 use InvestecSdkPhp\Requests\IntermediaryForexSettlement\BopReports\PerformBopReportAction;
 use InvestecSdkPhp\Resources\Resource;
-use Saloon\Contracts\Response;
+use Saloon\Http\Response;
 
 class BopReports extends Resource
 {

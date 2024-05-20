@@ -7,9 +7,9 @@ namespace InvestecSdkPhp\Resources\CorporateBankingForIntermediaries;
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Intermediaries\GetIntermediaries;
 use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
-use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
+use Saloon\Http\Response;
 
 class Intermediaries extends Resource
 {

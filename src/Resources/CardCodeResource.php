@@ -18,9 +18,10 @@ use InvestecSdkPhp\Requests\CardCode\PublishFunctionCodeRequest;
 use InvestecSdkPhp\Requests\CardCode\ToggleProgrammableCardEnabledRequest;
 use InvestecSdkPhp\Requests\CardCode\UpdateFunctionCodeRequest;
 use InvestecSdkPhp\Requests\CardCode\UpdateFunctionEnvironmentVariablesRequest;
-use Saloon\Contracts\Connector;
 use Saloon\Contracts\OAuthAuthenticator;
+use Saloon\Http\Connector;
 use Saloon\Http\Response;
+
 
 class CardCodeResource extends Resource
 {

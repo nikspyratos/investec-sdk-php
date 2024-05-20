@@ -11,9 +11,9 @@ use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Categories\PatchCa
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Categories\SetDefaultCategory;
 use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
-use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
+use Saloon\Http\Response;
 
 class Categories extends Resource
 {

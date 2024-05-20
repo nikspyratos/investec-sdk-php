@@ -9,6 +9,9 @@ use InvestecSdkPhp\Requests\CorporateBanking\GetAccountsRequest;
 use InvestecSdkPhp\Requests\CorporateBanking\GetAccountTransactionsRequest;
 use Saloon\Http\Response;
 
+/**
+ * @experimental Implemented according to spec, but untested. Please contribute fixes and tests if you use this!
+ */
 class CorporateBankingResource extends Resource
 {
     public function getAccounts(): Response

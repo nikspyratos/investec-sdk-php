@@ -8,9 +8,9 @@ use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\ClientDetails\GetC
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\ClientDetails\SearchClients;
 use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
-use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
+use Saloon\Http\Response;
 
 class ClientDetails extends Resource
 {
@@ -25,8 +25,8 @@ class ClientDetails extends Resource
     }
 
     /**
-     * @param  int|null  $page Must be greater than 0
-     * @param  int|null  $pageSize Min = 10, Max = 100
+     * @param  int|null  $page  Must be greater than 0
+     * @param  int|null  $pageSize  Min = 10, Max = 100
      *
      * @throws InvalidResponseClassException
      * @throws PendingRequestException

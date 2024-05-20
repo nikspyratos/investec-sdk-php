@@ -11,6 +11,7 @@ use InvestecSdkPhp\Resources\IntermediaryForexSettlementResource;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
 use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Helpers\OAuth2\OAuthConfig;
+use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Http\OAuth2\GetClientCredentialsTokenRequest;
 use Saloon\Traits\OAuth2\ClientCredentialsGrant;
@@ -45,7 +46,7 @@ class InvestecConnector extends Connector
             function (
                 GetClientCredentialsTokenRequest $request
             ) {
-                $request->withTokenAuth(base64_encode($this->clientId . ':' . $this->clientSecret), 'Basic')
+                $request->authenticate(new TokenAuthenticator(base64_encode($this->clientId . ':' . $this->clientSecret), 'Basic'))
                     ->headers()
                     ->add('x-api-key', $this->apiKey);
             }
@@ -57,6 +58,9 @@ class InvestecConnector extends Connector
         return new PrivateBankingResource($this, $authenticator);
     }
 
+    /**
+     * @experimental
+     */
     public function cardCode(OAuthAuthenticator $authenticator): CardCodeResource
     {
         return new CardCodeResource($this, $authenticator);
@@ -67,6 +71,9 @@ class InvestecConnector extends Connector
         return new CorporateBankingResource($this, $authenticator);
     }
 
+    /**
+     * @experimental
+     */
     public function intermediaryForexSettlement(OAuthAuthenticator $authenticator): IntermediaryForexSettlementResource
     {
         return new IntermediaryForexSettlementResource($this, $authenticator);

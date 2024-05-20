@@ -6,7 +6,7 @@ namespace InvestecSdkPhp\Resources\IntermediaryForexSettlement;
 
 use InvestecSdkPhp\Requests\IntermediaryForexSettlement\Forex\GetAccountForexBalances;
 use InvestecSdkPhp\Resources\Resource;
-use Saloon\Contracts\Response;
+use Saloon\Http\Response;
 
 class Forex extends Resource
 {

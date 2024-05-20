@@ -9,6 +9,9 @@ use InvestecSdkPhp\Resources\IntermediaryForexSettlement\Forex;
 use Saloon\Contracts\OAuthAuthenticator;
 use Saloon\Http\Connector;
 
+/**
+ * @experimental Implemented according to spec, but untested. Please contribute fixes and tests if you use this!
+ */
 class IntermediaryForexSettlementResource extends Resource
 {
     private BopReports $bopReports;

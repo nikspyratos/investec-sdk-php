@@ -11,17 +11,17 @@ use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Introducers\GetInt
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Introducers\UpdateIntroducer;
 use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
-use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
+use Saloon\Http\Response;
 
 class Introducers extends Resource
 {
     /**
-     * @param  int|null  $page Must be greater than 0
-     * @param  int|null  $pageSize Min = 10, Max = 100
-     * @param  string|null  $filter Search filter keyword
-     * @param  string|null  $sort Must be 'asc' or 'desc'
+     * @param  int|null  $page  Must be greater than 0
+     * @param  int|null  $pageSize  Min = 10, Max = 100
+     * @param  string|null  $filter  Search filter keyword
+     * @param  string|null  $sort  Must be 'asc' or 'desc'
      *
      * @throws InvalidResponseClassException
      * @throws PendingRequestException
@@ -33,9 +33,9 @@ class Introducers extends Resource
     }
 
     /**
-     * @param  int|null  $page Must be greater than 0
-     * @param  int|null  $pageSize Min = 10, Max = 100
-     * @param  string|null  $filter Search filter keyword
+     * @param  int|null  $page  Must be greater than 0
+     * @param  int|null  $pageSize  Min = 10, Max = 100
+     * @param  string|null  $filter  Search filter keyword
      *
      * @throws InvalidResponseClassException
      * @throws PendingRequestException

@@ -20,8 +20,8 @@ use InvestecSdkPhp\Requests\PrivateBanking\GetProfileBeneficiaries;
 use InvestecSdkPhp\Requests\PrivateBanking\GetProfiles;
 use InvestecSdkPhp\Requests\PrivateBanking\PayMultipleRequest;
 use InvestecSdkPhp\Requests\PrivateBanking\TransferMultipleV2Request;
-use Saloon\Contracts\Connector;
 use Saloon\Contracts\OAuthAuthenticator;
+use Saloon\Http\Connector;
 use Saloon\Http\Response;
 
 class PrivateBankingResource extends Resource
@@ -90,7 +90,7 @@ class PrivateBankingResource extends Resource
 
     public function getDocuments(string $accountId, ?string $fromDate = null, ?string $toDate = null): Response
     {
-        return $this->connector->send(new GetDocuments($accountId));
+        return $this->connector->debug(true)->send(new GetDocuments($accountId, $fromDate, $toDate));
     }
 
     public function getDocument(string $accountId, string $documentType, string $documentDate): Response

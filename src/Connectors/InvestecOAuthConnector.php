@@ -13,14 +13,14 @@ use InvestecSdkPhp\Resources\IntermediaryForexSettlementResource;
 use InvestecSdkPhp\Resources\PrivateBankingResource;
 use ReflectionException;
 use Saloon\Contracts\OAuthAuthenticator;
-use Saloon\Contracts\Request;
-use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\InvalidStateException;
 use Saloon\Exceptions\OAuthConfigValidationException;
 use Saloon\Exceptions\PendingRequestException;
 use Saloon\Helpers\OAuth2\OAuthConfig;
 use Saloon\Http\Connector;
+use Saloon\Http\Request;
+use Saloon\Http\Response;
 use Saloon\Traits\OAuth2\AuthorizationCodeGrant;
 
 class InvestecOAuthConnector extends Connector
@@ -151,11 +151,17 @@ class InvestecOAuthConnector extends Connector
         return new PrivateBankingResource($this, $authenticator);
     }
 
+    /**
+     * @experimental
+     */
     public function corporateBankingForIntermediaries(OAuthAuthenticator $authenticator): CorporateBankingForIntermediariesResource
     {
         return new CorporateBankingForIntermediariesResource($this, $authenticator);
     }
 
+    /**
+     * @experimental
+     */
     public function intermediaryForexSettlement(OAuthAuthenticator $authenticator): IntermediaryForexSettlementResource
     {
         return new IntermediaryForexSettlementResource($this, $authenticator);

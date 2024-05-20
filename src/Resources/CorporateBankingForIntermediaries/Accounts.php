@@ -16,9 +16,9 @@ use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Accounts\GetTransa
 use InvestecSdkPhp\Requests\CorporateBankingForIntermediaries\Accounts\SearchAccounts;
 use InvestecSdkPhp\Resources\Resource;
 use ReflectionException;
-use Saloon\Contracts\Response;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
+use Saloon\Http\Response;
 
 class Accounts extends Resource
 {
@@ -33,11 +33,11 @@ class Accounts extends Resource
     }
 
     /**
-     * @param  int|null  $page Must be greater than 0
-     * @param  int|null  $pageSize Min = 10, Max = 100
-     * @param  string|null  $startDate dd-MM-yyyy
-     * @param  string|null  $endDate dd-MM-yyyy
-     * @param  string|null  $sort asc/desc
+     * @param  int|null  $page  Must be greater than 0
+     * @param  int|null  $pageSize  Min = 10, Max = 100
+     * @param  string|null  $startDate  dd-MM-yyyy
+     * @param  string|null  $endDate  dd-MM-yyyy
+     * @param  string|null  $sort  asc/desc
      *
      * @throws ReflectionException
      * @throws InvalidResponseClassException
@@ -86,9 +86,9 @@ class Accounts extends Resource
     }
 
     /**
-     * @param  string  $accountStatus Must be 'Open' or 'Closed'
-     * @param  int|null  $page Must be greater than 0
-     * @param  int|null  $pageSize Min = 10, Max = 100
+     * @param  string  $accountStatus  Must be 'Open' or 'Closed'
+     * @param  int|null  $page  Must be greater than 0
+     * @param  int|null  $pageSize  Min = 10, Max = 100
      *
      * @throws InvalidResponseClassException
      * @throws PendingRequestException
@@ -120,9 +120,9 @@ class Accounts extends Resource
     }
 
     /**
-     * @param  string  $accountStatus 'Open' => OPEN Accounts | 'Closed' => CLOSED Accounts
-     * @param  int|null  $page Must be greater than 0
-     * @param  int|null  $pageSize Min = 10, Max = 100
+     * @param  string  $accountStatus  'Open' => OPEN Accounts | 'Closed' => CLOSED Accounts
+     * @param  int|null  $page  Must be greater than 0
+     * @param  int|null  $pageSize  Min = 10, Max = 100
      *
      * @throws InvalidResponseClassException
      * @throws PendingRequestException
@@ -134,11 +134,11 @@ class Accounts extends Resource
     }
 
     /**
-     * @param  string  $accountType Must be 'beneficiary-payment', 'ad-hoc-payment', 'scheduled-payment' or 'interest-instruction'
-     * @param  string|null  $keyword Search filter keyword
-     * @param  string|null  $categoryId Category-id filter key
-     * @param  int|null  $page Must be greater than 0
-     * @param  int|null  $pageSize Min = 10, Max = 100
+     * @param  string  $accountType  Must be 'beneficiary-payment', 'ad-hoc-payment', 'scheduled-payment' or 'interest-instruction'
+     * @param  string|null  $keyword  Search filter keyword
+     * @param  string|null  $categoryId  Category-id filter key
+     * @param  int|null  $page  Must be greater than 0
+     * @param  int|null  $pageSize  Min = 10, Max = 100
      *
      * @throws InvalidResponseClassException
      * @throws PendingRequestException
