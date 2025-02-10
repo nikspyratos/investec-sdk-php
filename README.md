@@ -1,3 +1,9 @@
+# Looking for maintainers
+
+This package is mostly a simple wrapper around the API - it is perfectly simple to implement it yourself, with or without extra tooling like Saloon.
+
+I unfortunately don't have the time to keep this up to date (especially as I am no longer an Investec customer myself). If you're keen to take over, please reach out or feel free to fork the repo.
+
 # Investec API SDK for PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nikspyratos/investec-sdk-php.svg?style=flat-square)](https://packagist.org/packages/nikspyratos/investec-sdk-php)
